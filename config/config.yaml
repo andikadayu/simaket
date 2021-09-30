@@ -1,0 +1,5 @@
+isLogin: False
+email: email@email.com
+name: NAME
+active_start: 2021-01-01
+active_end: 2021-01-01
