@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'shopeeMenu.ui'
+# Form implementation generated from reading ui file 'ShopeeMenu.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -15,6 +15,7 @@ class Ui_ShopeeMenu(object):
     def setupUi(self, ShopeeMenu):
         ShopeeMenu.setObjectName("ShopeeMenu")
         ShopeeMenu.resize(800, 600)
+        ShopeeMenu.setMinimumSize(QtCore.QSize(800, 600))
         ShopeeMenu.setMaximumSize(QtCore.QSize(800, 600))
         self.centralwidget = QtWidgets.QWidget(ShopeeMenu)
         self.centralwidget.setObjectName("centralwidget")
@@ -31,12 +32,12 @@ class Ui_ShopeeMenu(object):
         self.lblNama = QtWidgets.QLabel(self.widget)
         self.lblNama.setGeometry(QtCore.QRect(110, 25, 691, 31))
         self.lblNama.setStyleSheet("font-size:14px;\n"
-"font-weight:350;")
+                                   "font-weight:350;")
         self.lblNama.setObjectName("lblNama")
         self.lblSubsribe = QtWidgets.QLabel(self.widget)
         self.lblSubsribe.setGeometry(QtCore.QRect(110, 80, 691, 31))
         self.lblSubsribe.setStyleSheet("font-size:14px;\n"
-"font-weight:250;")
+                                       "font-weight:250;")
         self.lblSubsribe.setObjectName("lblSubsribe")
         self.label_2 = QtWidgets.QLabel(self.widget)
         self.label_2.setGeometry(QtCore.QRect(10, 20, 91, 91))
@@ -75,22 +76,22 @@ class Ui_ShopeeMenu(object):
         self.btnItem = QtWidgets.QPushButton(self.widget)
         self.btnItem.setGeometry(QtCore.QRect(660, 210, 131, 131))
         self.btnItem.setStyleSheet("font-size:18px;\n"
-"background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));\n"
-"border:none;\n"
-"color:white;\n"
-"font-weight:bold;\n"
-"border-radius:25px;\n"
-"")
+                                   "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));\n"
+                                   "border:none;\n"
+                                   "color:white;\n"
+                                   "font-weight:bold;\n"
+                                   "border-radius:25px;\n"
+                                   "")
         self.btnItem.setObjectName("btnItem")
         self.btnShop = QtWidgets.QPushButton(self.widget)
         self.btnShop.setGeometry(QtCore.QRect(660, 380, 131, 131))
         self.btnShop.setStyleSheet("font-size:18px;\n"
-"background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));\n"
-"border:none;\n"
-"color:white;\n"
-"font-weight:bold;\n"
-"border-radius:25px;\n"
-"")
+                                   "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));\n"
+                                   "border:none;\n"
+                                   "color:white;\n"
+                                   "font-weight:bold;\n"
+                                   "border-radius:25px;\n"
+                                   "")
         self.btnShop.setObjectName("btnShop")
         self.btnBack = QtWidgets.QPushButton(self.widget)
         self.btnBack.setGeometry(QtCore.QRect(10, 140, 121, 31))
@@ -111,7 +112,8 @@ class Ui_ShopeeMenu(object):
         _translate = QtCore.QCoreApplication.translate
         ShopeeMenu.setWindowTitle(_translate("ShopeeMenu", "SIMAKET"))
         self.lblNama.setText(_translate("ShopeeMenu", "Ini Nama Login User"))
-        self.lblSubsribe.setText(_translate("ShopeeMenu", "Anda berlangganan Aplikasi Ini mulai tanggal dd-mm-yyyy hingga dd-mm-yyyy"))
+        self.lblSubsribe.setText(_translate(
+            "ShopeeMenu", "Anda berlangganan Aplikasi Ini mulai tanggal dd-mm-yyyy hingga dd-mm-yyyy"))
         self.label_2.setText(_translate("ShopeeMenu", "ini Logo Nantinya"))
         self.label_3.setText(_translate("ShopeeMenu", "Scrap per Item"))
         self.label_4.setText(_translate("ShopeeMenu", "Scrap per Shop"))

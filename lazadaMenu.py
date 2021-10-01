@@ -15,6 +15,7 @@ class Ui_LazadaMenu(object):
     def setupUi(self, LazadaMenu):
         LazadaMenu.setObjectName("LazadaMenu")
         LazadaMenu.resize(800, 600)
+        LazadaMenu.setMinimumSize(QtCore.QSize(800, 600))
         LazadaMenu.setMaximumSize(QtCore.QSize(800, 600))
         self.centralwidget = QtWidgets.QWidget(LazadaMenu)
         self.centralwidget.setObjectName("centralwidget")
@@ -30,13 +31,11 @@ class Ui_LazadaMenu(object):
         self.label.setObjectName("label")
         self.lblNama = QtWidgets.QLabel(self.widget)
         self.lblNama.setGeometry(QtCore.QRect(110, 25, 691, 31))
-        self.lblNama.setStyleSheet("font-size:14px;\n"
-"font-weight:350;")
+        self.lblNama.setStyleSheet("font-size:14px;font-weight:350;")
         self.lblNama.setObjectName("lblNama")
         self.lblSubsribe = QtWidgets.QLabel(self.widget)
         self.lblSubsribe.setGeometry(QtCore.QRect(110, 80, 691, 31))
-        self.lblSubsribe.setStyleSheet("font-size:14px;\n"
-"font-weight:250;")
+        self.lblSubsribe.setStyleSheet("font-size:14px;font-weight:250;")
         self.lblSubsribe.setObjectName("lblSubsribe")
         self.label_2 = QtWidgets.QLabel(self.widget)
         self.label_2.setGeometry(QtCore.QRect(10, 20, 91, 91))
@@ -75,22 +74,22 @@ class Ui_LazadaMenu(object):
         self.btnItem = QtWidgets.QPushButton(self.widget)
         self.btnItem.setGeometry(QtCore.QRect(660, 210, 131, 131))
         self.btnItem.setStyleSheet("font-size:18px;\n"
-"background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));\n"
-"border:none;\n"
-"color:white;\n"
-"font-weight:bold;\n"
-"border-radius:25px;\n"
-"")
+                                   "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));\n"
+                                   "border:none;\n"
+                                   "color:white;\n"
+                                   "font-weight:bold;\n"
+                                   "border-radius:25px;\n"
+                                   "")
         self.btnItem.setObjectName("btnItem")
         self.btnPage = QtWidgets.QPushButton(self.widget)
         self.btnPage.setGeometry(QtCore.QRect(660, 380, 131, 131))
         self.btnPage.setStyleSheet("font-size:18px;\n"
-"background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));\n"
-"border:none;\n"
-"color:white;\n"
-"font-weight:bold;\n"
-"border-radius:25px;\n"
-"")
+                                   "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));\n"
+                                   "border:none;\n"
+                                   "color:white;\n"
+                                   "font-weight:bold;\n"
+                                   "border-radius:25px;\n"
+                                   "")
         self.btnPage.setObjectName("btnPage")
         self.btnBack = QtWidgets.QPushButton(self.widget)
         self.btnBack.setGeometry(QtCore.QRect(10, 140, 121, 31))
@@ -111,7 +110,8 @@ class Ui_LazadaMenu(object):
         _translate = QtCore.QCoreApplication.translate
         LazadaMenu.setWindowTitle(_translate("LazadaMenu", "SIMAKET"))
         self.lblNama.setText(_translate("LazadaMenu", "Ini Nama Login User"))
-        self.lblSubsribe.setText(_translate("LazadaMenu", "Anda berlangganan Aplikasi Ini mulai tanggal dd-mm-yyyy hingga dd-mm-yyyy"))
+        self.lblSubsribe.setText(_translate(
+            "LazadaMenu", "Anda berlangganan Aplikasi Ini mulai tanggal dd-mm-yyyy hingga dd-mm-yyyy"))
         self.label_2.setText(_translate("LazadaMenu", "ini Logo Nantinya"))
         self.label_3.setText(_translate("LazadaMenu", "Scrap per Item"))
         self.label_4.setText(_translate("LazadaMenu", "Scrap per Page"))

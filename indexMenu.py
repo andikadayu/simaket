@@ -15,6 +15,7 @@ class Ui_indexMenu(object):
     def setupUi(self, indexMenu):
         indexMenu.setObjectName("indexMenu")
         indexMenu.resize(800, 600)
+        indexMenu.setMinimumSize(QtCore.QSize(800, 600))
         indexMenu.setMaximumSize(QtCore.QSize(800, 600))
         self.centralwidget = QtWidgets.QWidget(indexMenu)
         self.centralwidget.setObjectName("centralwidget")
@@ -41,12 +42,12 @@ class Ui_indexMenu(object):
         self.lblNama = QtWidgets.QLabel(self.widget)
         self.lblNama.setGeometry(QtCore.QRect(110, 25, 691, 31))
         self.lblNama.setStyleSheet("font-size:14px;\n"
-"font-weight:350;")
+                                   "font-weight:350;")
         self.lblNama.setObjectName("lblNama")
         self.lblSubsribe = QtWidgets.QLabel(self.widget)
         self.lblSubsribe.setGeometry(QtCore.QRect(110, 80, 691, 31))
         self.lblSubsribe.setStyleSheet("font-size:14px;\n"
-"font-weight:250;")
+                                       "font-weight:250;")
         self.lblSubsribe.setObjectName("lblSubsribe")
         self.btnShopee = QtWidgets.QPushButton(self.widget)
         self.btnShopee.setGeometry(QtCore.QRect(70, 200, 91, 81))
@@ -95,12 +96,12 @@ class Ui_indexMenu(object):
         self.btnSetting = QtWidgets.QPushButton(self.widget)
         self.btnSetting.setGeometry(QtCore.QRect(10, 522, 131, 31))
         self.btnSetting.setStyleSheet("font-size:13px;\n"
-"")
+                                      "")
         self.btnSetting.setObjectName("btnSetting")
         self.btnLogout = QtWidgets.QPushButton(self.widget)
         self.btnLogout.setGeometry(QtCore.QRect(660, 520, 131, 31))
         self.btnLogout.setStyleSheet("font-size:13px;\n"
-"")
+                                     "")
         self.btnLogout.setObjectName("btnLogout")
         indexMenu.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(indexMenu)
@@ -119,7 +120,8 @@ class Ui_indexMenu(object):
         indexMenu.setWindowTitle(_translate("indexMenu", "SIMAKET"))
         self.label_2.setText(_translate("indexMenu", "ini Logo Nantinya"))
         self.lblNama.setText(_translate("indexMenu", "Ini Nama Login User"))
-        self.lblSubsribe.setText(_translate("indexMenu", "Anda berlangganan Aplikasi Ini mulai tanggal dd-mm-yyyy hingga dd-mm-yyyy"))
+        self.lblSubsribe.setText(_translate(
+            "indexMenu", "Anda berlangganan Aplikasi Ini mulai tanggal dd-mm-yyyy hingga dd-mm-yyyy"))
         self.btnShopee.setText(_translate("indexMenu", "ini shopee logo"))
         self.btnLazada.setText(_translate("indexMenu", "ini lazada logo"))
         self.btnTampil.setText(_translate("indexMenu", "view data"))

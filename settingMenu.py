@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'settingMenu.ui'
+# Form implementation generated from reading ui file 'SettingMenu.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -9,12 +9,16 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from pathlib import Path
+import requests
+import yaml
 
 
 class Ui_SettingMenu(object):
     def setupUi(self, SettingMenu):
         SettingMenu.setObjectName("SettingMenu")
         SettingMenu.resize(800, 600)
+        SettingMenu.setMinimumSize(QtCore.QSize(800, 600))
         SettingMenu.setMaximumSize(QtCore.QSize(800, 600))
         self.centralwidget = QtWidgets.QWidget(SettingMenu)
         self.centralwidget.setObjectName("centralwidget")
@@ -41,12 +45,12 @@ class Ui_SettingMenu(object):
         self.lblSubsribe = QtWidgets.QLabel(self.widget)
         self.lblSubsribe.setGeometry(QtCore.QRect(110, 80, 691, 31))
         self.lblSubsribe.setStyleSheet("font-size:14px;\n"
-"font-weight:250;")
+                                       "font-weight:250;")
         self.lblSubsribe.setObjectName("lblSubsribe")
         self.lblNama = QtWidgets.QLabel(self.widget)
         self.lblNama.setGeometry(QtCore.QRect(110, 25, 691, 31))
         self.lblNama.setStyleSheet("font-size:14px;\n"
-"font-weight:350;")
+                                   "font-weight:350;")
         self.lblNama.setObjectName("lblNama")
         self.btnBack = QtWidgets.QPushButton(self.widget)
         self.btnBack.setGeometry(QtCore.QRect(10, 140, 121, 31))
@@ -79,12 +83,12 @@ class Ui_SettingMenu(object):
         self.btnSave = QtWidgets.QPushButton(self.widget)
         self.btnSave.setGeometry(QtCore.QRect(650, 500, 111, 41))
         self.btnSave.setStyleSheet("font-size:14px;\n"
-"background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));\n"
-"border:none;\n"
-"color:white;\n"
-"font-weight:bold;\n"
-"border-radius:20px;\n"
-"")
+                                   "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));\n"
+                                   "border:none;\n"
+                                   "color:white;\n"
+                                   "font-weight:bold;\n"
+                                   "border-radius:20px;\n"
+                                   "")
         self.btnSave.setObjectName("btnSave")
         SettingMenu.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(SettingMenu)
@@ -98,16 +102,48 @@ class Ui_SettingMenu(object):
         self.retranslateUi(SettingMenu)
         QtCore.QMetaObject.connectSlotsByName(SettingMenu)
 
+        # for handle Button Action
+        self.btnSave.clicked.connect(self.changeSetting)
+        self.btnBack.clicked.connect(self.backMenu)
+
     def retranslateUi(self, SettingMenu):
         _translate = QtCore.QCoreApplication.translate
         SettingMenu.setWindowTitle(_translate("SettingMenu", "SIMAKET"))
         self.label_2.setText(_translate("SettingMenu", "ini Logo Nantinya"))
-        self.lblSubsribe.setText(_translate("SettingMenu", "Anda berlangganan Aplikasi Ini mulai tanggal dd-mm-yyyy hingga dd-mm-yyyy"))
+        self.lblSubsribe.setText(_translate(
+            "SettingMenu", "Anda berlangganan Aplikasi Ini mulai tanggal dd-mm-yyyy hingga dd-mm-yyyy"))
         self.lblNama.setText(_translate("SettingMenu", "Ini Nama Login User"))
         self.btnBack.setText(_translate("SettingMenu", "back to menu"))
         self.label_3.setText(_translate("SettingMenu", "Markup Percentage"))
-        self.label_4.setText(_translate("SettingMenu", "Remove Text (separate by comma [,]) "))
+        self.label_4.setText(_translate(
+            "SettingMenu", "Remove Text (separate by comma [,]) "))
         self.btnSave.setText(_translate("SettingMenu", "Save"))
+
+        self.txtMarkup.setText(_translate(
+            "SettingMenu", self.getConfig('Markup')))
+        self.txtRemove.setPlainText(_translate(
+            "SettingMenu", self.getConfig('RemoveText')))
+
+    def changeSetting(self):
+        txtMarkup = self.txtMarkup.text()
+        txtRemove = self.txtRemove.toPlainText()
+
+        setyml = {'Markup': int(txtMarkup), 'RemoveText': txtRemove}
+        with open(str(Path().absolute())+'/config/setting.yaml', 'w') as f:
+            yaml.dump(setyml, f)
+
+        lin = QtWidgets.QMessageBox(self.centralwidget)
+        lin.setText('Change Setting Success')
+        lin.exec()
+
+    def getConfig(self, req):
+        config = yaml.load(open(str(Path().absolute())+'/config/setting.yaml', 'r'),
+                           Loader=yaml.FullLoader)
+
+        return config[req]
+
+    def backMenu(self):
+        pass
 
 
 if __name__ == "__main__":

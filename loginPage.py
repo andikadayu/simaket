@@ -9,14 +9,17 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import requests
+import yaml
+from pathlib import Path
 
 
 class Ui_LoginPage(object):
     def setupUi(self, LoginPage):
         LoginPage.setObjectName("LoginPage")
-        LoginPage.resize(809, 635)
+        LoginPage.resize(800, 600)
         LoginPage.setMinimumSize(QtCore.QSize(800, 600))
-        LoginPage.setMaximumSize(QtCore.QSize(900, 700))
+        LoginPage.setMaximumSize(QtCore.QSize(800, 600))
         LoginPage.setAutoFillBackground(True)
         self.centralwidget = QtWidgets.QWidget(LoginPage)
         self.centralwidget.setObjectName("centralwidget")
@@ -60,20 +63,20 @@ class Ui_LoginPage(object):
         self.txtEmail = QtWidgets.QLineEdit(self.widget)
         self.txtEmail.setGeometry(QtCore.QRect(40, 210, 741, 51))
         self.txtEmail.setStyleSheet("background-color: rgb(0, 173, 239);\n"
-"border:none;\n"
-"border-bottom: 2px solid rgba(255,255,255,255);\n"
-"color:rgba(255,255,255,255);\n"
-"padding-bottom:7px;\n"
-"font-size:14px;")
+                                    "border:none;\n"
+                                    "border-bottom: 2px solid rgba(255,255,255,255);\n"
+                                    "color:rgba(255,255,255,255);\n"
+                                    "padding-bottom:7px;\n"
+                                    "font-size:14px;")
         self.txtEmail.setObjectName("txtEmail")
         self.txtPassword = QtWidgets.QLineEdit(self.widget)
         self.txtPassword.setGeometry(QtCore.QRect(40, 340, 741, 51))
         self.txtPassword.setStyleSheet("background-color: rgb(0, 173, 239);\n"
-"border:none;\n"
-"border-bottom: 2px solid rgba(255,255,255,255);\n"
-"color:rgba(255,255,255,255);\n"
-"padding-bottom:7px;\n"
-"font-size:14px;")
+                                       "border:none;\n"
+                                       "border-bottom: 2px solid rgba(255,255,255,255);\n"
+                                       "color:rgba(255,255,255,255);\n"
+                                       "padding-bottom:7px;\n"
+                                       "font-size:14px;")
         self.txtPassword.setEchoMode(QtWidgets.QLineEdit.Password)
         self.txtPassword.setObjectName("txtPassword")
         self.textLogin_3 = QtWidgets.QLabel(self.widget)
@@ -88,16 +91,16 @@ class Ui_LoginPage(object):
         self.btnLogin = QtWidgets.QPushButton(self.widget)
         self.btnLogin.setGeometry(QtCore.QRect(600, 460, 131, 51))
         self.btnLogin.setStyleSheet("font-size:18px;\n"
-"background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));\n"
-"border:none;\n"
-"color:white;\n"
-"font-weight:bold;\n"
-"border-radius:25px;\n"
-"")
+                                    "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));\n"
+                                    "border:none;\n"
+                                    "color:white;\n"
+                                    "font-weight:bold;\n"
+                                    "border-radius:25px;\n"
+                                    "")
         self.btnLogin.setObjectName("btnLogin")
         LoginPage.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(LoginPage)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 809, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 21))
         self.menubar.setObjectName("menubar")
         LoginPage.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(LoginPage)
@@ -107,14 +110,50 @@ class Ui_LoginPage(object):
         self.retranslateUi(LoginPage)
         QtCore.QMetaObject.connectSlotsByName(LoginPage)
 
+        # for handle action button
+        self.btnLogin.clicked.connect(self.loginAction)
+
     def retranslateUi(self, LoginPage):
         _translate = QtCore.QCoreApplication.translate
         LoginPage.setWindowTitle(_translate("LoginPage", "SIMAKET"))
         self.textTitle.setText(_translate("LoginPage", "SIMAKET"))
-        self.textLogin.setText(_translate("LoginPage", "Welcome to Login Page"))
+        self.textLogin.setText(_translate(
+            "LoginPage", "Welcome to Login Page"))
         self.textLogin_2.setText(_translate("LoginPage", "Email"))
         self.textLogin_3.setText(_translate("LoginPage", "Password"))
         self.btnLogin.setText(_translate("LoginPage", "Login"))
+
+    def loginAction(self):
+        emails = self.txtEmail.text()
+        passwords = self.txtPassword.text()
+
+        if emails == '' and passwords == '':
+            lin = QtWidgets.QMessageBox(self.centralwidget)
+            lin.setText('Complete the form')
+            lin.exec()
+        else:
+            hostlink = "https://marketing.pt-ckit.com/api/login_apps.php"
+            datas = {'email': emails, 'password': passwords}
+
+            try:
+                resp = requests.post(hostlink, data=datas, timeout=None)
+                retcode = resp.json()
+
+                if(retcode['status'] == 'OK'):
+                    with open(str(Path().absolute())+'/config/config.yaml', 'w') as f:
+                        yaml.dump(retcode, f)
+                    lin = QtWidgets.QMessageBox(self.centralwidget)
+                    lin.setText('Login Success')
+                    lin.exec()
+                else:
+                    lin = QtWidgets.QMessageBox(self.centralwidget)
+                    lin.setText('Email/Password Incorrect')
+                    lin.exec()
+
+            except requests.ConnectionError as error:
+                lines = QtWidgets.QMessageBox(self.MainWindow)
+                lines.setText(error)
+                lines.exec()
 
 
 if __name__ == "__main__":

@@ -1,5 +1,8 @@
-from models.databaseHelper import databaseHelper
 
-datab = databaseHelper()
+from models.activateHelper import activateHelper
 
-print(datab.open_connection())
+
+datab = activateHelper()
+
+act = datab.getActivate()
+print(act['active_text'])
