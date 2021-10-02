@@ -10,7 +10,6 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from pathlib import Path
-import requests
 import yaml
 
 
@@ -128,7 +127,7 @@ class Ui_SettingMenu(object):
         txtMarkup = self.txtMarkup.text()
         txtRemove = self.txtRemove.toPlainText()
 
-        setyml = {'Markup': int(txtMarkup), 'RemoveText': txtRemove}
+        setyml = {'Markup': txtMarkup, 'RemoveText': txtRemove}
         with open(str(Path().absolute())+'/config/setting.yaml', 'w') as f:
             yaml.dump(setyml, f)
 

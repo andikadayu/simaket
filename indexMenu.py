@@ -10,6 +10,8 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+from models.activateHelper import activateHelper
+
 
 class Ui_indexMenu(object):
     def setupUi(self, indexMenu):
@@ -119,9 +121,9 @@ class Ui_indexMenu(object):
         _translate = QtCore.QCoreApplication.translate
         indexMenu.setWindowTitle(_translate("indexMenu", "SIMAKET"))
         self.label_2.setText(_translate("indexMenu", "ini Logo Nantinya"))
-        self.lblNama.setText(_translate("indexMenu", "Ini Nama Login User"))
+        self.lblNama.setText(_translate("indexMenu", self.getName()))
         self.lblSubsribe.setText(_translate(
-            "indexMenu", "Anda berlangganan Aplikasi Ini mulai tanggal dd-mm-yyyy hingga dd-mm-yyyy"))
+            "indexMenu", self.getActivate()))
         self.btnShopee.setText(_translate("indexMenu", "ini shopee logo"))
         self.btnLazada.setText(_translate("indexMenu", "ini lazada logo"))
         self.btnTampil.setText(_translate("indexMenu", "view data"))
@@ -132,6 +134,24 @@ class Ui_indexMenu(object):
         self.label_6.setText(_translate("indexMenu", "Export Excel"))
         self.btnSetting.setText(_translate("indexMenu", "Setting"))
         self.btnLogout.setText(_translate("indexMenu", "Logout"))
+
+    def getActivate(self):
+        activHelp = activateHelper()
+        stats = activHelp.getActivate()
+        if stats['active_status'] == 'OK':
+            return stats['active_text']
+        else:
+            self.hasErrorActivate(stats['active_text'])
+            return stats['active_text']
+
+    def hasErrorActivate(self, text):
+        lin = QtWidgets.QMessageBox(self.centralwidget)
+        lin.setText(text)
+        lin.exec()
+
+    def getName(self):
+        activHelp = activateHelper()
+        return activHelp.getName()
 
 
 if __name__ == "__main__":
