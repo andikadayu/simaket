@@ -3,6 +3,7 @@ from random import randrange
 from models.databaseLite import databaseLite
 import json
 
+
 class shopeeDetail:
     image = {}
     catid = 0
@@ -27,7 +28,7 @@ class shopeeDetail:
     def __init__(self, url):
         self.url = url
 
-    def getData(self,ids):
+    def getData(self, ids):
         link = self.url.replace('?position=', '.')
 
         links = link.split('-i.')
@@ -48,7 +49,7 @@ class shopeeDetail:
             for ans in jsons['data']['images']:
                 self.image['img'+str(i)] = ans
                 i += 1
-                
+
             self.gambar1 = json.dumps(self.image)
 
             self.deskripsi = jsons['data']['description'].replace("'", " ")
@@ -58,7 +59,7 @@ class shopeeDetail:
                 self.video = jsons['data']['video_info_list']
             else:
                 self.video = None
-                
+
             self.video1 = json.dumps(self.video)
 
             for ansi in jsons['data']['models']:
@@ -74,11 +75,12 @@ class shopeeDetail:
                 self.str_liks = "https://shopee.co.id/" + \
                     str(self.name.replace(" ", "-"))+"-i." + \
                     str(self.shopid)+"."+self.itemid
-                    
+
                 dblite = databaseLite()
-                
-                dblite.insert_database("tb_shopee","(NULL,'"+str(ids)+"','"+str(self.str_liks)+"','"+str(self.name)+"','"+str(self.deskripsi)+"','"+str(self.catid)+"','0','1','0','1','Baru','"+str(self.gambar1)+"','"+str(self.video1)+"','"+str(self.sku)+"','Aktif','"+str(self.stok)+"','"+str(self.harga)+"','optional')")
-            return self.name
+
+                dblite.insert_database("tb_shopee", "(NULL,'"+str(ids)+"','"+str(self.str_liks)+"','"+str(self.name)+"','"+str(self.deskripsi)+"','"+str(
+                    self.catid)+"','0','1','0','1','Baru','"+str(self.gambar1)+"','"+str(self.video1)+"','"+str(self.sku)+"','Aktif','"+str(self.stok)+"','"+str(self.harga)+"','optional')")
+            return None
 
         except requests.ConnectionError as error:
             return error

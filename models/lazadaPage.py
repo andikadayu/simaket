@@ -1,23 +1,28 @@
-import undetected_chromedriver as uc
 from bs4 import BeautifulSoup
 import time
 from selenium.common.exceptions import TimeoutException
 import json
 from selenium.webdriver.common.by import By
 from selenium import webdriver
+from pathlib import Path
 
 
 class lazadaPage:
+    # take comment one of them ==
+
+    # For Windows
+    CHROME_PATH = str(Path().absolute())+'/tools/chromedriver.exe'
+    # For Linux
+    # CHROME_PATH = str(Path().absolute())+'tools/chromedriver'
+
+    # end of take comment
     url = ""
-    options = webdriver.ChromeOptions()
-    options.add_argument("start-maximized")
-    driver = uc
     link = []
 
     def __init__(self, url):
         self.url = url
         self.link = []
-        self.driver = uc.Chrome(options=self.options)
+        self.driver = webdriver.Chrome(self.CHROME_PATH)
 
     def getPage(self):
         try:

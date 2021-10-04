@@ -13,3 +13,11 @@
     pip install -r requirements.txt
     ```
 3. Update chromedriver to latest ,[this link](https://chromedriver.chromium.org/) (if has error)
+
+# Tasklist
+
+- Shopee UI Backend (`75%`)
+- Icon For UI (`waiting`)
+- Lazada UI Backend (`40%`)
+- Other UI for read and export (`0%`)
+- merge all file to one file (`last version after partial menu has done`)

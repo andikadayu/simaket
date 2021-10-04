@@ -9,6 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from models.activateHelper import activateHelper
 
 
 class Ui_LazadaMenu(object):
@@ -106,18 +107,50 @@ class Ui_LazadaMenu(object):
         self.retranslateUi(LazadaMenu)
         QtCore.QMetaObject.connectSlotsByName(LazadaMenu)
 
+        # button action handle
+        self.btnItem.clicked.connect(self.itemAction)
+        self.btnPage.clicked.connect(self.pageAction)
+        self.btnBack.clicked.connect(self.backMenu)
+
     def retranslateUi(self, LazadaMenu):
         _translate = QtCore.QCoreApplication.translate
         LazadaMenu.setWindowTitle(_translate("LazadaMenu", "SIMAKET"))
-        self.lblNama.setText(_translate("LazadaMenu", "Ini Nama Login User"))
+        self.lblNama.setText(_translate("LazadaMenu", self.getName()))
         self.lblSubsribe.setText(_translate(
-            "LazadaMenu", "Anda berlangganan Aplikasi Ini mulai tanggal dd-mm-yyyy hingga dd-mm-yyyy"))
+            "LazadaMenu", self.getActivate()))
         self.label_2.setText(_translate("LazadaMenu", "ini Logo Nantinya"))
         self.label_3.setText(_translate("LazadaMenu", "Scrap per Item"))
         self.label_4.setText(_translate("LazadaMenu", "Scrap per Page"))
         self.btnItem.setText(_translate("LazadaMenu", "Scrap Item"))
         self.btnPage.setText(_translate("LazadaMenu", "Scrap Shop"))
         self.btnBack.setText(_translate("LazadaMenu", "back to menu"))
+
+    def getActivate(self):
+        activHelp = activateHelper()
+        stats = activHelp.getActivate()
+        if stats['active_status'] == 'OK':
+            return stats['active_text']
+        else:
+            self.hasErrorActivate(stats['active_text'])
+            return stats['active_text']
+
+    def hasErrorActivate(self, text):
+        lin = QtWidgets.QMessageBox(self.centralwidget)
+        lin.setText(text)
+        lin.exec()
+
+    def getName(self):
+        activHelp = activateHelper()
+        return activHelp.getName()
+
+    def itemAction(self):
+        pass
+
+    def pageAction(self):
+        pass
+
+    def backMenu(self):
+        pass
 
 
 if __name__ == "__main__":

@@ -9,6 +9,12 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from models.activateHelper import activateHelper
+from models.databaseLite import databaseLite
+
+from models.shopeePage import shopeePage
+from models.shopeeDetail import shopeeDetail
+from datetime import datetime
 
 
 class Ui_ShopeeMenu(object):
@@ -108,18 +114,96 @@ class Ui_ShopeeMenu(object):
         self.retranslateUi(ShopeeMenu)
         QtCore.QMetaObject.connectSlotsByName(ShopeeMenu)
 
+        # button action handle
+        self.btnItem.clicked.connect(self.itemAction)
+        self.btnShop.clicked.connect(self.shopAction)
+        self.btnBack.clicked.connect(self.backMenu)
+
     def retranslateUi(self, ShopeeMenu):
         _translate = QtCore.QCoreApplication.translate
         ShopeeMenu.setWindowTitle(_translate("ShopeeMenu", "SIMAKET"))
-        self.lblNama.setText(_translate("ShopeeMenu", "Ini Nama Login User"))
+        self.lblNama.setText(_translate("ShopeeMenu", self.getName()))
         self.lblSubsribe.setText(_translate(
-            "ShopeeMenu", "Anda berlangganan Aplikasi Ini mulai tanggal dd-mm-yyyy hingga dd-mm-yyyy"))
+            "ShopeeMenu", self.getActivate()))
         self.label_2.setText(_translate("ShopeeMenu", "ini Logo Nantinya"))
         self.label_3.setText(_translate("ShopeeMenu", "Scrap per Item"))
         self.label_4.setText(_translate("ShopeeMenu", "Scrap per Shop"))
         self.btnItem.setText(_translate("ShopeeMenu", "Scrap Item"))
         self.btnShop.setText(_translate("ShopeeMenu", "Scrap Shop"))
         self.btnBack.setText(_translate("ShopeeMenu", "back to menu"))
+
+    def getActivate(self):
+        activHelp = activateHelper()
+        stats = activHelp.getActivate()
+        if stats['active_status'] == 'OK':
+            return stats['active_text']
+        else:
+            self.hasErrorActivate(stats['active_text'])
+            return stats['active_text']
+
+    def hasErrorActivate(self, text):
+        lin = QtWidgets.QMessageBox(self.centralwidget)
+        lin.setText(text)
+        lin.exec()
+
+    def getName(self):
+        activHelp = activateHelper()
+        return activHelp.getName()
+
+    def itemAction(self):
+        ids = 0
+        links = self.txtItem.toPlainText()
+        datenow = str(datetime.date(datetime.now()))
+        if links == '':
+            lin = QtWidgets.QMessageBox(self.centralwidget)
+            lin.setText('Complete the form')
+            lin.exec()
+        else:
+            alllink = links.split(',')
+            dblite = databaseLite()
+            ids = dblite.insert_getId('tb_scrap', "(NULL,'"+datenow+"','1')")
+            for ans in alllink:
+                shopee = shopeeDetail(str(ans))
+                shopee.getData(ids)
+
+            linz = QtWidgets.QMessageBox(self.centralwidget)
+            linz.setText('Done')
+            linz.exec()
+            self.txtItem.setPlainText("")
+
+    def shopAction(self):
+        ids = 0
+        links = self.txtShop.toPlainText()
+        getlink = []
+        datenow = str(datetime.date(datetime.now()))
+
+        if links == '':
+            lin = QtWidgets.QMessageBox(self.centralwidget)
+            lin.setText('Complete the form')
+            lin.exec()
+        else:
+            allLink = links.split(',')
+            dblite = databaseLite()
+            ids = dblite.insert_getId('tb_scrap', "(NULL,'"+datenow+"','1')")
+            for lins in allLink:
+                shopees = shopeePage(lins)
+                numbers = shopees.getMaxPage()
+                getlink = shopees.getAllUrl(int(numbers))
+
+                for ans in getlink:
+                    detail = shopeeDetail(str(ans))
+                    detail.getData(ids)
+
+                getlink = []
+                # shopees.shutDown()
+
+            linz = QtWidgets.QMessageBox(self.centralwidget)
+            linz.setText('Done')
+            linz.exec()
+            self.txtShop.setPlainText("")
+
+    def backMenu(self):
+        pass
 
 
 if __name__ == "__main__":

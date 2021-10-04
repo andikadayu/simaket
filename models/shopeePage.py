@@ -5,19 +5,19 @@
 
 from selenium import webdriver
 from bs4 import BeautifulSoup
-import undetected_chromedriver as uc
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 import time
+from pathlib import Path
 
 
 class shopeePage:
     # take comment one of them ==
 
     # For Windows
-    CHROME_PATH = '/tools/chromedriver.exe'
+    CHROME_PATH = str(Path().absolute())+'/tools/chromedriver.exe'
     # For Linux
-    # CHROME_PATH = 'tools/chromedriver'
+    # CHROME_PATH = str(Path().absolute())+'tools/chromedriver'
 
     # end of take comment
 

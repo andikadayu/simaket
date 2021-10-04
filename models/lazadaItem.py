@@ -1,15 +1,20 @@
 from selenium import webdriver
-import undetected_chromedriver as uc
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 import time
+from pathlib import Path
 
 
 class lazadaItem:
+    # take comment one of them ==
+
+    # For Windows
+    CHROME_PATH = str(Path().absolute())+'/tools/chromedriver.exe'
+    # For Linux
+    # CHROME_PATH = str(Path().absolute())+'tools/chromedriver'
+
+    # end of take comment
     url = ""
-    options = webdriver.ChromeOptions()
-    options.add_argument("start-maximized")
-    driver = uc
     content = ""
     images = []
 
@@ -17,7 +22,7 @@ class lazadaItem:
         self.url = url
         self.content = ''
         self.images = []
-        self.driver = uc.Chrome(options=self.options)
+        self.driver = webdriver.Chrome(self.CHROME_PATH)
 
     def getData(self):
         try:
