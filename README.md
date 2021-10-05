@@ -16,10 +16,10 @@
 
 # Tasklist
 
-- Shopee UI Backend (`75%`)
-- Icon For UI (`waiting`)
-- Lazada UI Backend (`75%%`)
-- Other UI for read Data (`75%`)
-- Other UI for export Data (`0%`)
-- Other UI For Index Menu (`75%`)
-- merge all file to one file (`last version after partial menu has done`)
+- Shopee UI Backend `75%`
+- Icon For UI `waiting`
+- Lazada UI Backend `75%%`
+- Other UI for read Data `75%`
+- Other UI for export Data `0%`
+- Other UI For Index Menu `75%`
+- merge all file to one file `last version after partial menu has done`
