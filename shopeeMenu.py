@@ -121,7 +121,8 @@ class Ui_ShopeeMenu(object):
 
     def retranslateUi(self, ShopeeMenu):
         _translate = QtCore.QCoreApplication.translate
-        ShopeeMenu.setWindowTitle(_translate("ShopeeMenu", "SIMAKET"))
+        ShopeeMenu.setWindowTitle(_translate(
+            "ShopeeMenu", "SIMAKET - Shopee Menu"))
         self.lblNama.setText(_translate("ShopeeMenu", self.getName()))
         self.lblSubsribe.setText(_translate(
             "ShopeeMenu", self.getActivate()))
@@ -195,7 +196,7 @@ class Ui_ShopeeMenu(object):
                     detail.getData(ids)
 
                 getlink = []
-                # shopees.shutDown()
+                shopees.shutDown()
 
             linz = QtWidgets.QMessageBox(self.centralwidget)
             linz.setText('Done')

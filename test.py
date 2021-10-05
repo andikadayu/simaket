@@ -4,8 +4,12 @@
 
 # test database
 # dblite = databaseLite()
+# rows = dblite.read_dateabase("tb_scrap", "*", "", "", "", "", "")
+# for row in rows:
+#     print(row)
 # print(dblite.insert_getId('tb_scrap', "(NULL,'2021-10-02','1')"))
 # dblite.truncate_database()
+# print(dblite.get_count("tb_scrap", "id_scrap", ""))
 
 # test shopee detail
 

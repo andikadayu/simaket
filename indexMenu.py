@@ -95,11 +95,6 @@ class Ui_indexMenu(object):
         font.setWeight(50)
         self.label_6.setFont(font)
         self.label_6.setObjectName("label_6")
-        self.btnSetting = QtWidgets.QPushButton(self.widget)
-        self.btnSetting.setGeometry(QtCore.QRect(10, 522, 131, 31))
-        self.btnSetting.setStyleSheet("font-size:13px;\n"
-                                      "")
-        self.btnSetting.setObjectName("btnSetting")
         self.btnLogout = QtWidgets.QPushButton(self.widget)
         self.btnLogout.setGeometry(QtCore.QRect(660, 520, 131, 31))
         self.btnLogout.setStyleSheet("font-size:13px;\n"
@@ -132,7 +127,6 @@ class Ui_indexMenu(object):
         self.label_4.setText(_translate("indexMenu", "Lazada Scrapper"))
         self.label_5.setText(_translate("indexMenu", "Tampil Data"))
         self.label_6.setText(_translate("indexMenu", "Export Excel"))
-        self.btnSetting.setText(_translate("indexMenu", "Setting"))
         self.btnLogout.setText(_translate("indexMenu", "Logout"))
 
     def getActivate(self):

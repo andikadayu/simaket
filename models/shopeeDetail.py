@@ -14,9 +14,9 @@ class shopeeDetail:
     shopid = 0
     version = randrange(7, 999999999)
     str_liks = ""
-    berat = 0
+    berat = 500
     mins = 1
-    etalase = None
+    etalase = 0
     kondisi = "Baru"
     sku = "SKID-"+str(randrange(1111111111, 9999999999))
     stok = 12
@@ -24,6 +24,9 @@ class shopeeDetail:
     url = ""
     gambar1 = ""
     video1 = ""
+    preorder = 0
+    status = "Aktif"
+    asuransi = "optional"
 
     def __init__(self, url):
         self.url = url
@@ -78,8 +81,8 @@ class shopeeDetail:
 
                 dblite = databaseLite()
 
-                dblite.insert_database("tb_shopee", "(NULL,'"+str(ids)+"','"+str(self.str_liks)+"','"+str(self.name)+"','"+str(self.deskripsi)+"','"+str(
-                    self.catid)+"','0','1','0','1','Baru','"+str(self.gambar1)+"','"+str(self.video1)+"','"+str(self.sku)+"','Aktif','"+str(self.stok)+"','"+str(self.harga)+"','optional')")
+                dblite.insert_database("tb_detail", "(NULL,'"+str(ids)+"','"+str(self.url)+"','"+str(self.name)+"','"+str(self.deskripsi)+"','"+str(self.catid)+"','"+str(self.berat)+"','"+str(self.mins)+"','"+str(
+                    self.etalase)+"','"+str(self.preorder)+"','"+str(self.kondisi)+"','"+str(self.gambar1)+"',NULL,'"+str(self.sku)+"','"+str(self.status)+"','"+str(self.stok)+"','"+str(self.harga)+"','"+str(self.asuransi)+"')")
             return None
 
         except requests.ConnectionError as error:

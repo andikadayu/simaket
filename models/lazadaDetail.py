@@ -14,9 +14,9 @@ class lazadaDetail:
     shopid = 0
     version = randrange(7, 999999999)
     str_liks = ""
-    berat = 0
+    berat = 500
     mins = 1
-    etalase = None
+    etalase = 0
     kondisi = "Baru"
     sku = ""
     stok = 12
@@ -42,7 +42,7 @@ class lazadaDetail:
 
         dblite = databaseLite()
 
-        dblite.insert_database("tb_lazada", "(NULL,'"+str(ids)+"','"+str(self.url)+"','"+str(self.name)+"','"+str(self.deskripsi)+"','"+str(self.catid)+"','"+str(self.berat)+"','"+str(self.mins)+"','"+str(
+        dblite.insert_database("tb_detail", "(NULL,'"+str(ids)+"','"+str(self.url)+"','"+str(self.name)+"','"+str(self.deskripsi)+"','"+str(self.catid)+"','"+str(self.berat)+"','"+str(self.mins)+"','"+str(
             self.etalase)+"','"+str(self.preorder)+"','"+str(self.kondisi)+"','"+str(self.gambar1)+"',NULL,'"+str(self.sku)+"','"+str(self.status)+"','"+str(self.stok)+"','"+str(self.harga)+"','"+str(self.asuransi)+"')")
 
         return None

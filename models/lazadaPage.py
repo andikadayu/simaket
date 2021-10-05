@@ -1,8 +1,6 @@
 from bs4 import BeautifulSoup
 import time
 from selenium.common.exceptions import TimeoutException
-import json
-from selenium.webdriver.common.by import By
 from selenium import webdriver
 from pathlib import Path
 

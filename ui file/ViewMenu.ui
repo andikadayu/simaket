@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>SettingMenu</class>
- <widget class="QMainWindow" name="SettingMenu">
+ <class>ViewMenu</class>
+ <widget class="QMainWindow" name="ViewMenu">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -35,6 +35,12 @@
       <height>600</height>
      </rect>
     </property>
+    <property name="minimumSize">
+     <size>
+      <width>800</width>
+      <height>600</height>
+     </size>
+    </property>
     <property name="maximumSize">
      <size>
       <width>800</width>
@@ -49,6 +55,12 @@
        <width>800</width>
        <height>600</height>
       </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>800</width>
+       <height>600</height>
+      </size>
      </property>
      <property name="maximumSize">
       <size>
@@ -67,7 +79,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>20</y>
+       <y>10</y>
        <width>91</width>
        <height>91</height>
       </rect>
@@ -89,28 +101,11 @@
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QLabel" name="lblSubsribe">
-     <property name="geometry">
-      <rect>
-       <x>110</x>
-       <y>80</y>
-       <width>691</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font-size:14px;
-font-weight:250;</string>
-     </property>
-     <property name="text">
-      <string>Anda berlangganan Aplikasi Ini mulai tanggal dd-mm-yyyy hingga dd-mm-yyyy</string>
-     </property>
-    </widget>
     <widget class="QLabel" name="lblNama">
      <property name="geometry">
       <rect>
        <x>110</x>
-       <y>25</y>
+       <y>15</y>
        <width>691</width>
        <height>31</height>
       </rect>
@@ -123,11 +118,28 @@ font-weight:350;</string>
       <string>Ini Nama Login User</string>
      </property>
     </widget>
+    <widget class="QLabel" name="lblSubsribe">
+     <property name="geometry">
+      <rect>
+       <x>110</x>
+       <y>70</y>
+       <width>691</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-size:14px;
+font-weight:250;</string>
+     </property>
+     <property name="text">
+      <string>Anda berlangganan Aplikasi Ini mulai tanggal dd-mm-yyyy hingga dd-mm-yyyy</string>
+     </property>
+    </widget>
     <widget class="QPushButton" name="btnBack">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>140</y>
+       <y>120</y>
        <width>121</width>
        <height>31</height>
       </rect>
@@ -136,95 +148,140 @@ font-weight:350;</string>
       <string>back to menu</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_3">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>180</y>
-       <width>771</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>14</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>Markup Percentage</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_4">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>280</y>
-       <width>771</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>14</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>Remove Text (separate by comma [,]) </string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="txtMarkup">
+    <widget class="QTableWidget" name="tableView">
      <property name="geometry">
       <rect>
        <x>20</x>
        <y>230</y>
-       <width>671</width>
-       <height>41</height>
+       <width>751</width>
+       <height>281</height>
       </rect>
      </property>
      <property name="font">
       <font>
+       <family>Tahoma</family>
        <pointsize>12</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
-     <property name="inputMethodHints">
-      <set>Qt::ImhDigitsOnly</set>
+     <property name="autoFillBackground">
+      <bool>false</bool>
      </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::HLine</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Sunken</enum>
+     </property>
+     <property name="gridStyle">
+      <enum>Qt::SolidLine</enum>
+     </property>
+     <property name="rowCount">
+      <number>50</number>
+     </property>
+     <attribute name="horizontalHeaderDefaultSectionSize">
+      <number>234</number>
+     </attribute>
+     <attribute name="horizontalHeaderHighlightSections">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+      <bool>true</bool>
+     </attribute>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <column>
+      <property name="text">
+       <string>Commerce</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Tanggal</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Jumlah</string>
+      </property>
+     </column>
     </widget>
-    <widget class="QPlainTextEdit" name="txtRemove">
+    <widget class="QPushButton" name="btnRefresh">
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>330</y>
-       <width>671</width>
-       <height>151</height>
+       <y>180</y>
+       <width>121</width>
+       <height>31</height>
       </rect>
      </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-      </font>
+     <property name="text">
+      <string>Refresh</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="btnSave">
+    <widget class="QPushButton" name="btnDelete">
      <property name="geometry">
       <rect>
        <x>650</x>
-       <y>500</y>
-       <width>111</width>
-       <height>41</height>
+       <y>180</y>
+       <width>121</width>
+       <height>31</height>
       </rect>
      </property>
-     <property name="styleSheet">
-      <string notr="true">font-size:14px;
-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));
-border:none;
-color:white;
-font-weight:bold;
-border-radius:20px;
-</string>
-     </property>
      <property name="text">
-      <string>Save</string>
+      <string>Delete All Data</string>
      </property>
     </widget>
    </widget>

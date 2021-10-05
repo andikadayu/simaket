@@ -10,6 +10,13 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from models.activateHelper import activateHelper
+from datetime import datetime
+
+from models.databaseLite import databaseLite
+from models.lazadaDetail import lazadaDetail
+from models.lazadaItem import lazadaItem
+from models.lazadaPage import lazadaPage
+import json
 
 
 class Ui_LazadaMenu(object):
@@ -114,7 +121,8 @@ class Ui_LazadaMenu(object):
 
     def retranslateUi(self, LazadaMenu):
         _translate = QtCore.QCoreApplication.translate
-        LazadaMenu.setWindowTitle(_translate("LazadaMenu", "SIMAKET"))
+        LazadaMenu.setWindowTitle(_translate(
+            "LazadaMenu", "SIMAKET - Lazada Menu"))
         self.lblNama.setText(_translate("LazadaMenu", self.getName()))
         self.lblSubsribe.setText(_translate(
             "LazadaMenu", self.getActivate()))
@@ -144,10 +152,61 @@ class Ui_LazadaMenu(object):
         return activHelp.getName()
 
     def itemAction(self):
-        pass
+        ids = 0
+        links = self.txtItem.toPlainText()
+        datenow = str(datetime.date(datetime.now()))
+        if links == '':
+            lin = QtWidgets.QMessageBox(self.centralwidget)
+            lin.setText('Complete the form')
+            lin.exec()
+        else:
+            dblite = databaseLite()
+            ids = dblite.insert_getId("tb_scrap", "(NULL,'"+datenow+"','2')")
+            alllinks = links.split(',')
+            for lin in alllinks:
+                lazitem = lazadaItem(lin)
+                jsdata = lazitem.getData()
+                jsimage = json.dumps(lazitem.getImage())
+                lazdet = lazadaDetail(lin)
+                lazdet.getData(jsdata, jsimage, ids)
+                lazitem.shutDown()
+
+            linz = QtWidgets.QMessageBox(self.centralwidget)
+            linz.setText('Done')
+            linz.exec()
+            self.txtItem.setPlainText("")
 
     def pageAction(self):
-        pass
+        ids = 0
+        links = self.txtPage.toPlainText()
+        datenow = str(datetime.date(datetime.now()))
+        link1 = []
+        if links == '':
+            lin = QtWidgets.QMessageBox(self.centralwidget)
+            lin.setText('Complete the form')
+            lin.exec()
+        else:
+            dblite = databaseLite()
+            ids = dblite.insert_getId("tb_scrap", "(NULL,'"+datenow+"','2')")
+            alllinks = links.split(',')
+            for allsa in alllinks:
+                lazap = lazadaPage(allsa)
+                link1.append(lazap.getPage())
+                lazap.shutDown()
+
+            for sas in link1:
+                for shine in sas:
+                    lazitem = lazadaItem(shine)
+                    jsdata = lazitem.getData()
+                    jsimage = json.dumps(lazitem.getImage())
+                    lazdet = lazadaDetail(shine)
+                    lazdet.getData(jsdata, jsimage, ids)
+                    lazitem.shutDown()
+
+            linz = QtWidgets.QMessageBox(self.centralwidget)
+            linz.setText('Done')
+            linz.exec()
+            self.txtPage.setPlainText("")
 
     def backMenu(self):
         pass
