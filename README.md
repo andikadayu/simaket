@@ -21,11 +21,11 @@ Apps For Scrapping Lazada and Shopee
 
 |       Check        |            Task            |  Percent   |
 | :----------------: | :------------------------: | :--------: |
-| :white_check_mark: |     Shopee UI Backend      |   `75%`    |
-| :white_check_mark: |     Lazada UI Backend      |   `75%`    |
-| :white_check_mark: |   Other UI for Read Data   |   `75%`    |
-| :white_check_mark: |  Other UI for Export Data  |   `75%`    |
-| :white_check_mark: |  Other UI For Index Menu   |   `75%`    |
+| :heavy_check_mark: |     Shopee UI Backend      |   `75%`    |
+| :heavy_check_mark: |     Lazada UI Backend      |   `75%`    |
+| :heavy_check_mark: |   Other UI for Read Data   |   `75%`    |
+| :heavy_check_mark: |  Other UI for Export Data  |   `75%`    |
+| :heavy_check_mark: |  Other UI For Index Menu   |   `75%`    |
 |                    | Merge All File to One File | `Proccess` |
 |                    |        Icon For UI         | `Waiting`  |
 |                    | Optimizing Scrapping Speed |   `Plan`   |
