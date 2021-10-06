@@ -5,7 +5,7 @@ import json
 
 
 class shopeeDetail:
-    image = {}
+    image = []
     catid = 0
     deskripsi = ''
     name = ''
@@ -18,7 +18,7 @@ class shopeeDetail:
     mins = 1
     etalase = 0
     kondisi = "Baru"
-    sku = "SKID-"+str(randrange(1111111111, 9999999999))
+    sku = "SKU"
     stok = 12
     harga = 12000
     url = ""
@@ -48,10 +48,8 @@ class shopeeDetail:
 
             resp = requests.get(hostlink, params=datas, timeout=30)
             jsons = resp.json()
-            i = 0
             for ans in jsons['data']['images']:
-                self.image['img'+str(i)] = ans
-                i += 1
+                self.image.append(ans)
 
             self.gambar1 = json.dumps(self.image)
 
@@ -66,6 +64,7 @@ class shopeeDetail:
             self.video1 = json.dumps(self.video)
 
             for ansi in jsons['data']['models']:
+                self.sku = "SKID-"+str(randrange(1111111111, 9999999999))
                 prices = str(ansi['price'])
                 self.harga = int(prices[0:-5])
                 self.stok = ansi['stock']

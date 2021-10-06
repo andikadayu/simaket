@@ -9,7 +9,7 @@ class databaseLite:
     def __init__(self) -> None:
         pass
 
-    def read_dateabase(self, table, select, join, where, groupby, orderby, limit):
+    def read_dateabase(self, table, select, join, where, groupby, orderby, limit, offset):
         try:
             con = sqlite3.connect(self.pathdb)
 
@@ -30,6 +30,9 @@ class databaseLite:
             if limit != '':
                 sql += "Limit "+limit+" "
 
+            if offset != '':
+                sql += "Offset "+offset+" "
+
             cur = con.cursor()
             cur.execute(sql)
             row = cur.fetchall()
@@ -39,11 +42,14 @@ class databaseLite:
         except sqlite3.Error as e:
             return e
 
-    def get_count(self, table, wcount, where):
+    def get_count(self, table, wcount, join, where):
         try:
             con = sqlite3.connect(self.pathdb)
 
             sql = "SELECT COUNT("+wcount+") FROM "+table+" "
+
+            if join != '':
+                sql += join+" "
 
             if where != '':
                 sql += "WHERE "+where+" "

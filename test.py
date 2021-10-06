@@ -1,8 +1,8 @@
 
+# test database
+
 # from models.databaseLite import databaseLite
 
-
-# test database
 # dblite = databaseLite()
 # rows = dblite.read_dateabase("tb_scrap", "*", "", "", "", "", "")
 # for row in rows:
@@ -13,14 +13,18 @@
 
 # test shopee detail
 
-#from models.shopeeDetail import shopeeDetail
+# from models.shopeeDetail import shopeeDetail
+# from models.databaseLite import databaseLite
+# dblite = databaseLite()
 
-#ids = dblite.insert_getId('tb_scrap', "(NULL,'2021-10-02','1')")
-#detail = shopeeDetail("https://shopee.co.id/Osaka-Set-Sprei-dan-Bed-Cover-JTI-157-Jacquard-Tencel-i.8534891.8841313151")
+# ids = dblite.insert_getId('tb_scrap', "(NULL,'2021-10-02','1')")
+# detail = shopeeDetail(
+#     "https://shopee.co.id/Osaka-Set-Sprei-dan-Bed-Cover-JTI-157-Jacquard-Tencel-i.8534891.8841313151")
 # print(detail.getData(ids))
 
 # Lazada Testing
 
+# from models.databaseLite import databaseLite
 # from models.lazadaDetail import lazadaDetail
 # from models.lazadaItem import lazadaItem
 # import json
@@ -39,3 +43,12 @@
 # print(lazdet.getData(jsdata, jsimage, ids))
 
 # lazitem.shutDown()
+
+# test xlsx
+
+
+# from models.excelCreate import excelcreate
+
+# xlsx = excelcreate()
+
+# xlsx.create_excel(limit=5, offset=0, shop=1)

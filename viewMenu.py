@@ -143,11 +143,11 @@ class Ui_ViewMenu(object):
     def loadAllData(self):
 
         dblite = databaseLite()
-        cts = dblite.get_count("tb_scrap", "id_scrap", "")
+        cts = dblite.get_count("tb_scrap", "id_scrap", "", "")
         self.tableView.setRowCount(cts)
         tbrow = 0
         rowalls = dblite.read_dateabase("tb_detail", "tb_commerce.name_commerce as commerce,tb_scrap.tgl_scrap as dates ,COUNT(tb_detail.id_detail) as counts",
-                                        "INNER JOIN tb_scrap ON tb_scrap.id_scrap = tb_detail.id_scrape INNER JOIN tb_commerce ON tb_commerce.id_commerce = tb_scrap.id_commerce", "", "tb_detail.id_scrape", "tgl_scrap DESC", "50")
+                                        "INNER JOIN tb_scrap ON tb_scrap.id_scrap = tb_detail.id_scrape INNER JOIN tb_commerce ON tb_commerce.id_commerce = tb_scrap.id_commerce", "", "tb_detail.id_scrape", "tgl_scrap DESC", "50", "0")
         for row in rowalls:
             self.tableView.setItem(
                 tbrow, 0, QtWidgets.QTableWidgetItem(row[0]))

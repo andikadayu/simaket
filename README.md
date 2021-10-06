@@ -1,3 +1,6 @@
+# SIMAKET - Information
+Apps For Scrapping Lazada and Shopee
+
 # Requirements
 1. Python 3.8+
 2. Python pip
@@ -14,12 +17,15 @@
     ```
 3. Update chromedriver to latest ,[this link](https://chromedriver.chromium.org/) (if has error)
 
-# Tasklist
+# Tasklist 
 
-- Shopee UI Backend `75%`
-- Icon For UI `waiting`
-- Lazada UI Backend `75%%`
-- Other UI for read Data `75%`
-- Other UI for export Data `0%`
-- Other UI For Index Menu `75%`
-- merge all file to one file `last version after partial menu has done`
+|       Check        |            Task            |  Percent   |
+| :----------------: | :------------------------: | :--------: |
+| :white_check_mark: |     Shopee UI Backend      |   `75%`    |
+| :white_check_mark: |     Lazada UI Backend      |   `75%`    |
+| :white_check_mark: |   Other UI for Read Data   |   `75%`    |
+| :white_check_mark: |  Other UI for Export Data  |   `75%`    |
+| :white_check_mark: |  Other UI For Index Menu   |   `75%`    |
+|                    | Merge All File to One File | `Proccess` |
+|                    |        Icon For UI         | `Waiting`  |
+|                    | Optimizing Scrapping Speed |   `Plan`   |
