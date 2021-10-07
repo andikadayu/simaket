@@ -905,10 +905,10 @@ class ViewMenu(object):
             dblite = databaseLite()
             dblite.truncate_database()
 
-        lin = QtWidgets.QMessageBox(self.centralwidget)
-        lin.setText("Delete All Data Done")
-        lin.exec()
-        self.loadAllData()
+            lin = QtWidgets.QMessageBox(self.centralwidget)
+            lin.setText("Delete All Data Done")
+            lin.exec()
+            self.loadAllData()
 
     def backMenu(self):
         Main_Window.close()
