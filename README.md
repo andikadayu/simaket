@@ -1,5 +1,21 @@
-# SIMAKET - Information
-Apps For Scrapping Lazada and Shopee
+# Information
+Apps For Scrapping Lazada and Shopee and export the result to excel file
+
+# Feature List
+1. Scraping E Commerce (Shopee And Lazada)
+2. REST API Service For Login
+3. Subscription Apps For Business Purpose
+4. Export Scraping Result On XLSX File (Excel)
+5. Portable Apps
+6. Portable Database
+
+# Development Details
+|     Type     |         Usage         |
+| :----------: | :-------------------: |
+|   Language   | Python Latest Version |
+| Program Type |          GUI          |
+|  Framework   |    Selenium & BS4     |
+|   Database   |       SQLITE 3        |
 
 # Requirements
 1. Python 3.8+
@@ -17,15 +33,25 @@ Apps For Scrapping Lazada and Shopee
     ```
 3. Update chromedriver to latest ,[this link](https://chromedriver.chromium.org/) (if has error)
 
+# Usage
+1. execute simaket.py
+   ```
+    python simaket.py
+   ```
+2. Login and go to Index
+3. For Shopee Scrap using shop id (Multi item) or link (Single Item)
+4. For Lazada Scrap using Page on All Product or Link on single item
+
+
 # Tasklist 
 
-|       Check        |            Task            |  Percent   |
-| :----------------: | :------------------------: | :--------: |
-| :heavy_check_mark: |     Shopee UI Backend      |   `75%`    |
-| :heavy_check_mark: |     Lazada UI Backend      |   `75%`    |
-| :heavy_check_mark: |   Other UI for Read Data   |   `75%`    |
-| :heavy_check_mark: |  Other UI for Export Data  |   `75%`    |
-| :heavy_check_mark: |  Other UI For Index Menu   |   `75%`    |
-|                    | Merge All File to One File | `Proccess` |
-|                    |        Icon For UI         | `Waiting`  |
-|                    | Optimizing Scrapping Speed |   `Plan`   |
+|       Check        |            Task            |  Percent  |
+| :----------------: | :------------------------: | :-------: |
+| :heavy_check_mark: |     Shopee UI Backend      | __100%__  |
+| :heavy_check_mark: |     Lazada UI Backend      |  `100%`   |
+| :heavy_check_mark: |   Other UI for Read Data   |  `100%`   |
+| :heavy_check_mark: |  Other UI for Export Data  |  `100%`   |
+| :heavy_check_mark: |  Other UI For Index Menu   |  `100%`   |
+| :heavy_check_mark: | Merge All File to One File | `Success` |
+|                    |        Icon For UI         | `Waiting` |
+|                    | Optimizing Scrapping Speed |  `Plan`   |
