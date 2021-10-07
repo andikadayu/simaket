@@ -45,13 +45,13 @@ Apps For Scrapping Lazada and Shopee and export the result to excel file
 
 # Tasklist 
 
-|       Check        |            Task            |  Percent  |
-| :----------------: | :------------------------: | :-------: |
-| :heavy_check_mark: |     Shopee UI Backend      | __100%__  |
-| :heavy_check_mark: |     Lazada UI Backend      |  `100%`   |
-| :heavy_check_mark: |   Other UI for Read Data   |  `100%`   |
-| :heavy_check_mark: |  Other UI for Export Data  |  `100%`   |
-| :heavy_check_mark: |  Other UI For Index Menu   |  `100%`   |
-| :heavy_check_mark: | Merge All File to One File | `Success` |
-|                    |        Icon For UI         | `Waiting` |
-|                    | Optimizing Scrapping Speed |  `Plan`   |
+|       Check        |            Task            |   Percent   |
+| :----------------: | :------------------------: | :---------: |
+| :heavy_check_mark: |     Shopee UI Backend      |  __100%__   |
+| :heavy_check_mark: |     Lazada UI Backend      |  __100%__   |
+| :heavy_check_mark: |   Other UI for Read Data   |  __100%__   |
+| :heavy_check_mark: |  Other UI for Export Data  |  __100%__   |
+| :heavy_check_mark: |  Other UI For Index Menu   |  __100%__   |
+| :heavy_check_mark: | Merge All File to One File | __Success__ |
+|                    |        Icon For UI         | __Waiting__ |
+|                    | Optimizing Scrapping Speed |  __Plan__   |
