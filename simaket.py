@@ -36,7 +36,7 @@ class LoginPage(object):
         self.label = QtWidgets.QLabel(self.widget)
         self.label.setGeometry(QtCore.QRect(0, 0, 800, 600))
         self.label.setMaximumSize(QtCore.QSize(800, 600))
-        self.label.setStyleSheet("background-color: rgb(0, 173, 239);")
+        self.label.setStyleSheet("background-color: rgb(204, 242, 244);")
         self.label.setText("")
         self.label.setObjectName("label")
         self.textTitle = QtWidgets.QLabel(self.widget)
@@ -47,7 +47,7 @@ class LoginPage(object):
         font.setBold(True)
         font.setWeight(75)
         self.textTitle.setFont(font)
-        self.textTitle.setStyleSheet("color: rgb(255, 255, 255);")
+        self.textTitle.setStyleSheet("color: rgb(0, 0, 0);")
         self.textTitle.setObjectName("textTitle")
         self.textLogin = QtWidgets.QLabel(self.widget)
         self.textLogin.setGeometry(QtCore.QRect(260, 70, 291, 61))
@@ -56,7 +56,7 @@ class LoginPage(object):
         font.setBold(True)
         font.setWeight(75)
         self.textLogin.setFont(font)
-        self.textLogin.setStyleSheet("color: rgb(255, 255, 255);")
+        self.textLogin.setStyleSheet("color: rgb(0, 0, 0);")
         self.textLogin.setObjectName("textLogin")
         self.textLogin_2 = QtWidgets.QLabel(self.widget)
         self.textLogin_2.setGeometry(QtCore.QRect(40, 150, 61, 61))
@@ -65,23 +65,23 @@ class LoginPage(object):
         font.setBold(True)
         font.setWeight(75)
         self.textLogin_2.setFont(font)
-        self.textLogin_2.setStyleSheet("color: rgb(255, 255, 255);")
+        self.textLogin_2.setStyleSheet("color: rgb(0, 0, 0);")
         self.textLogin_2.setObjectName("textLogin_2")
         self.txtEmail = QtWidgets.QLineEdit(self.widget)
         self.txtEmail.setGeometry(QtCore.QRect(40, 210, 741, 51))
-        self.txtEmail.setStyleSheet("background-color: rgb(0, 173, 239);\n"
+        self.txtEmail.setStyleSheet("background-color: rgb(204, 242, 244);\n"
                                     "border:none;\n"
-                                    "border-bottom: 2px solid rgba(255,255,255,255);\n"
-                                    "color:rgba(255,255,255,255);\n"
+                                    "border-bottom: 2px solid rgb(0, 0, 0);\n"
+                                    "color:rgb(0,0,0);\n"
                                     "padding-bottom:7px;\n"
                                     "font-size:14px;")
         self.txtEmail.setObjectName("txtEmail")
         self.txtPassword = QtWidgets.QLineEdit(self.widget)
         self.txtPassword.setGeometry(QtCore.QRect(40, 340, 741, 51))
-        self.txtPassword.setStyleSheet("background-color: rgb(0, 173, 239);\n"
+        self.txtPassword.setStyleSheet("background-color: rgb(204, 242, 244);\n"
                                        "border:none;\n"
-                                       "border-bottom: 2px solid rgba(255,255,255,255);\n"
-                                       "color:rgba(255,255,255,255);\n"
+                                       "border-bottom: 2px solid rgb(0, 0, 0);\n"
+                                       "color:rgb(0,0,0);\n"
                                        "padding-bottom:7px;\n"
                                        "font-size:14px;")
         self.txtPassword.setEchoMode(QtWidgets.QLineEdit.Password)
@@ -93,17 +93,11 @@ class LoginPage(object):
         font.setBold(True)
         font.setWeight(75)
         self.textLogin_3.setFont(font)
-        self.textLogin_3.setStyleSheet("color: rgb(255, 255, 255);")
+        self.textLogin_3.setStyleSheet("color: rgb(0, 0, 0);")
         self.textLogin_3.setObjectName("textLogin_3")
         self.btnLogin = QtWidgets.QPushButton(self.widget)
         self.btnLogin.setGeometry(QtCore.QRect(600, 460, 131, 51))
-        self.btnLogin.setStyleSheet("font-size:18px;\n"
-                                    "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));\n"
-                                    "border:none;\n"
-                                    "color:white;\n"
-                                    "font-weight:bold;\n"
-                                    "border-radius:25px;\n"
-                                    "")
+
         self.btnLogin.setObjectName("btnLogin")
         LoginPage.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(LoginPage)
@@ -116,6 +110,17 @@ class LoginPage(object):
 
         self.retranslateUi(LoginPage)
         QtCore.QMetaObject.connectSlotsByName(LoginPage)
+
+        # Button Icon
+        self.btnLogin.setIcon(QtGui.QIcon('assets/login.png'))
+        self.btnLogin.setIconSize(QtCore.QSize(48, 48))
+        self.btnLogin.setStyleSheet("font-size:18px;\n"
+                                    "background-color: rgb(110, 203, 99);\n"
+                                    "border:none;\n"
+                                    "color:black;\n"
+                                    "font-weight:bold;\n"
+                                    "margin-left:5px;\n"
+                                    "border-radius:10px;")
 
         # for handle action button
         self.btnLogin.clicked.connect(self.loginAction)
@@ -186,7 +191,7 @@ class indexMenu(object):
         self.label = QtWidgets.QLabel(self.widget)
         self.label.setGeometry(QtCore.QRect(0, 0, 800, 600))
         self.label.setMaximumSize(QtCore.QSize(800, 600))
-        self.label.setStyleSheet("background-color: rgb(0, 173, 239);")
+        self.label.setStyleSheet("background-color: rgb(204, 242, 244);")
         self.label.setText("")
         self.label.setObjectName("label")
         self.label_2 = QtWidgets.QLabel(self.widget)
@@ -210,16 +215,16 @@ class indexMenu(object):
                                        "font-weight:250;")
         self.lblSubsribe.setObjectName("lblSubsribe")
         self.btnShopee = QtWidgets.QPushButton(self.widget)
-        self.btnShopee.setGeometry(QtCore.QRect(70, 200, 91, 81))
+        self.btnShopee.setGeometry(QtCore.QRect(50, 200, 120, 120))
         self.btnShopee.setObjectName("btnShopee")
         self.btnLazada = QtWidgets.QPushButton(self.widget)
-        self.btnLazada.setGeometry(QtCore.QRect(70, 380, 91, 81))
+        self.btnLazada.setGeometry(QtCore.QRect(50, 380, 120, 120))
         self.btnLazada.setObjectName("btnLazada")
         self.btnTampil = QtWidgets.QPushButton(self.widget)
-        self.btnTampil.setGeometry(QtCore.QRect(430, 200, 91, 81))
+        self.btnTampil.setGeometry(QtCore.QRect(410, 200, 120, 120))
         self.btnTampil.setObjectName("btnTampil")
         self.btnExport = QtWidgets.QPushButton(self.widget)
-        self.btnExport.setGeometry(QtCore.QRect(430, 380, 91, 81))
+        self.btnExport.setGeometry(QtCore.QRect(410, 380, 120, 120))
         self.btnExport.setObjectName("btnExport")
         self.label_3 = QtWidgets.QLabel(self.widget)
         self.label_3.setGeometry(QtCore.QRect(180, 230, 161, 21))
@@ -254,9 +259,7 @@ class indexMenu(object):
         self.label_6.setFont(font)
         self.label_6.setObjectName("label_6")
         self.btnLogout = QtWidgets.QPushButton(self.widget)
-        self.btnLogout.setGeometry(QtCore.QRect(660, 520, 131, 31))
-        self.btnLogout.setStyleSheet("font-size:13px;\n"
-                                     "")
+        self.btnLogout.setGeometry(QtCore.QRect(660, 520, 131, 51))
         self.btnLogout.setObjectName("btnLogout")
         indexMenu.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(indexMenu)
@@ -269,6 +272,33 @@ class indexMenu(object):
 
         self.retranslateUi(indexMenu)
         QtCore.QMetaObject.connectSlotsByName(indexMenu)
+
+        # Button Icon
+        self.btnLazada.setIcon(QtGui.QIcon('assets/lazadascrap.png'))
+        self.btnLazada.setIconSize(QtCore.QSize(120, 120))
+        self.btnLazada.setStyleSheet("border:none")
+
+        self.btnShopee.setIcon(QtGui.QIcon('assets/shopeescrap.png'))
+        self.btnShopee.setIconSize(QtCore.QSize(120, 120))
+        self.btnShopee.setStyleSheet("border:none")
+
+        self.btnTampil.setIcon(QtGui.QIcon('assets/frequency.png'))
+        self.btnTampil.setIconSize(QtCore.QSize(120, 120))
+        self.btnTampil.setStyleSheet("border:none")
+
+        self.btnExport.setIcon(QtGui.QIcon('assets/excel.png'))
+        self.btnExport.setIconSize(QtCore.QSize(120, 120))
+        self.btnExport.setStyleSheet("border:none")
+
+        self.btnLogout.setIcon(QtGui.QIcon('assets/logout.png'))
+        self.btnLogout.setIconSize(QtCore.QSize(48, 48))
+        self.btnLogout.setStyleSheet("font-size:18px;\n"
+                                     "background-color: rgb(110, 203, 99);\n"
+                                     "border:none;\n"
+                                     "color:black;\n"
+                                     "font-weight:bold;\n"
+                                     "margin-left:5px;\n"
+                                     "border-radius:10px;")
 
         # Button Handle Action
         self.btnExport.clicked.connect(self.toExport)
@@ -284,10 +314,6 @@ class indexMenu(object):
         self.lblNama.setText(_translate("indexMenu", self.getName()))
         self.lblSubsribe.setText(_translate(
             "indexMenu", self.getActivate()))
-        self.btnShopee.setText(_translate("indexMenu", "ini shopee logo"))
-        self.btnLazada.setText(_translate("indexMenu", "ini lazada logo"))
-        self.btnTampil.setText(_translate("indexMenu", "view data"))
-        self.btnExport.setText(_translate("indexMenu", "export tanggal"))
         self.label_3.setText(_translate("indexMenu", "Shopee Scrapper"))
         self.label_4.setText(_translate("indexMenu", "Lazada Scrapper"))
         self.label_5.setText(_translate("indexMenu", "Tampil Data"))
@@ -358,7 +384,7 @@ class ShopeeMenu(object):
         self.label = QtWidgets.QLabel(self.widget)
         self.label.setGeometry(QtCore.QRect(0, 0, 800, 600))
         self.label.setMaximumSize(QtCore.QSize(800, 600))
-        self.label.setStyleSheet("background-color: rgb(0, 173, 239);")
+        self.label.setStyleSheet("background-color: rgb(204, 242, 244);")
         self.label.setText("")
         self.label.setObjectName("label")
         self.lblNama = QtWidgets.QLabel(self.widget)
@@ -406,24 +432,12 @@ class ShopeeMenu(object):
         self.txtShop.setFont(font)
         self.txtShop.setObjectName("txtShop")
         self.btnItem = QtWidgets.QPushButton(self.widget)
-        self.btnItem.setGeometry(QtCore.QRect(660, 210, 131, 131))
-        self.btnItem.setStyleSheet("font-size:18px;\n"
-                                   "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));\n"
-                                   "border:none;\n"
-                                   "color:white;\n"
-                                   "font-weight:bold;\n"
-                                   "border-radius:25px;\n"
-                                   "")
+        self.btnItem.setGeometry(QtCore.QRect(660, 220, 120, 95))
+
         self.btnItem.setObjectName("btnItem")
         self.btnShop = QtWidgets.QPushButton(self.widget)
-        self.btnShop.setGeometry(QtCore.QRect(660, 380, 131, 131))
-        self.btnShop.setStyleSheet("font-size:18px;\n"
-                                   "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));\n"
-                                   "border:none;\n"
-                                   "color:white;\n"
-                                   "font-weight:bold;\n"
-                                   "border-radius:25px;\n"
-                                   "")
+        self.btnShop.setGeometry(QtCore.QRect(660, 390, 120, 95))
+
         self.btnShop.setObjectName("btnShop")
         self.btnBack = QtWidgets.QPushButton(self.widget)
         self.btnBack.setGeometry(QtCore.QRect(10, 140, 121, 31))
@@ -440,6 +454,31 @@ class ShopeeMenu(object):
         self.retranslateUi(ShopeeMenu)
         QtCore.QMetaObject.connectSlotsByName(ShopeeMenu)
 
+        # Button Styling
+        self.btnBack.setIcon(QtGui.QIcon('assets/back.png'))
+        self.btnBack.setIconSize(QtCore.QSize(32, 32))
+        self.btnBack.setStyleSheet("border:none;font-weight:bold;")
+
+        self.btnShop.setIcon(QtGui.QIcon('assets/web-crawler.png'))
+        self.btnShop.setIconSize(QtCore.QSize(64, 64))
+        self.btnShop.setStyleSheet("font-size:18px;\n"
+                                   "background-color: rgb(110, 203, 99);\n"
+                                   "border:none;\n"
+                                   "color:white;\n"
+                                   "font-weight:bold;\n"
+                                   "border-radius:25px;\n"
+                                   "")
+
+        self.btnItem.setIcon(QtGui.QIcon('assets/web-crawler.png'))
+        self.btnItem.setIconSize(QtCore.QSize(64, 64))
+        self.btnItem.setStyleSheet("font-size:18px;\n"
+                                   "background-color: rgb(110, 203, 99);\n"
+                                   "border:none;\n"
+                                   "color:white;\n"
+                                   "font-weight:bold;\n"
+                                   "border-radius:25px;\n"
+                                   "")
+
         # button action handle
         self.btnItem.clicked.connect(self.itemAction)
         self.btnShop.clicked.connect(self.shopAction)
@@ -455,9 +494,9 @@ class ShopeeMenu(object):
         self.label_2.setText(_translate("ShopeeMenu", "ini Logo Nantinya"))
         self.label_3.setText(_translate("ShopeeMenu", "Scrap per Item"))
         self.label_4.setText(_translate("ShopeeMenu", "Scrap per Shop"))
-        self.btnItem.setText(_translate("ShopeeMenu", "Scrap Item"))
-        self.btnShop.setText(_translate("ShopeeMenu", "Scrap Shop"))
-        self.btnBack.setText(_translate("ShopeeMenu", "back to menu"))
+        self.btnItem.setText(_translate("ShopeeMenu", "Item"))
+        self.btnShop.setText(_translate("ShopeeMenu", "Shop"))
+        self.btnBack.setText(_translate("ShopeeMenu", "BACK"))
 
     def getActivate(self):
         activHelp = activateHelper()
@@ -561,7 +600,7 @@ class LazadaMenu(object):
         self.label = QtWidgets.QLabel(self.widget)
         self.label.setGeometry(QtCore.QRect(0, 0, 800, 600))
         self.label.setMaximumSize(QtCore.QSize(800, 600))
-        self.label.setStyleSheet("background-color: rgb(0, 173, 239);")
+        self.label.setStyleSheet("background-color: rgb(204, 242, 244);")
         self.label.setText("")
         self.label.setObjectName("label")
         self.lblNama = QtWidgets.QLabel(self.widget)
@@ -607,24 +646,10 @@ class LazadaMenu(object):
         self.txtPage.setFont(font)
         self.txtPage.setObjectName("txtPage")
         self.btnItem = QtWidgets.QPushButton(self.widget)
-        self.btnItem.setGeometry(QtCore.QRect(660, 210, 131, 131))
-        self.btnItem.setStyleSheet("font-size:18px;\n"
-                                   "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));\n"
-                                   "border:none;\n"
-                                   "color:white;\n"
-                                   "font-weight:bold;\n"
-                                   "border-radius:25px;\n"
-                                   "")
+        self.btnItem.setGeometry(QtCore.QRect(660, 220, 120, 95))
         self.btnItem.setObjectName("btnItem")
         self.btnPage = QtWidgets.QPushButton(self.widget)
-        self.btnPage.setGeometry(QtCore.QRect(660, 380, 131, 131))
-        self.btnPage.setStyleSheet("font-size:18px;\n"
-                                   "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));\n"
-                                   "border:none;\n"
-                                   "color:white;\n"
-                                   "font-weight:bold;\n"
-                                   "border-radius:25px;\n"
-                                   "")
+        self.btnPage.setGeometry(QtCore.QRect(660, 390, 120, 95))
         self.btnPage.setObjectName("btnPage")
         self.btnBack = QtWidgets.QPushButton(self.widget)
         self.btnBack.setGeometry(QtCore.QRect(10, 140, 121, 31))
@@ -637,6 +662,31 @@ class LazadaMenu(object):
         self.statusbar = QtWidgets.QStatusBar(LazadaMenu)
         self.statusbar.setObjectName("statusbar")
         LazadaMenu.setStatusBar(self.statusbar)
+
+        # Button Styling
+        self.btnBack.setIcon(QtGui.QIcon('assets/back.png'))
+        self.btnBack.setIconSize(QtCore.QSize(32, 32))
+        self.btnBack.setStyleSheet("border:none;font-weight:bold;")
+
+        self.btnPage.setIcon(QtGui.QIcon('assets/web-crawler.png'))
+        self.btnPage.setIconSize(QtCore.QSize(64, 64))
+        self.btnPage.setStyleSheet("font-size:18px;\n"
+                                   "background-color: rgb(110, 203, 99);\n"
+                                   "border:none;\n"
+                                   "color:white;\n"
+                                   "font-weight:bold;\n"
+                                   "border-radius:25px;\n"
+                                   "")
+
+        self.btnItem.setIcon(QtGui.QIcon('assets/web-crawler.png'))
+        self.btnItem.setIconSize(QtCore.QSize(64, 64))
+        self.btnItem.setStyleSheet("font-size:18px;\n"
+                                   "background-color: rgb(110, 203, 99);\n"
+                                   "border:none;\n"
+                                   "color:white;\n"
+                                   "font-weight:bold;\n"
+                                   "border-radius:25px;\n"
+                                   "")
 
         self.retranslateUi(LazadaMenu)
         QtCore.QMetaObject.connectSlotsByName(LazadaMenu)
@@ -656,9 +706,9 @@ class LazadaMenu(object):
         self.label_2.setText(_translate("LazadaMenu", "ini Logo Nantinya"))
         self.label_3.setText(_translate("LazadaMenu", "Scrap per Item"))
         self.label_4.setText(_translate("LazadaMenu", "Scrap per Page"))
-        self.btnItem.setText(_translate("LazadaMenu", "Scrap Item"))
-        self.btnPage.setText(_translate("LazadaMenu", "Scrap Shop"))
-        self.btnBack.setText(_translate("LazadaMenu", "back to menu"))
+        self.btnItem.setText(_translate("LazadaMenu", "Item"))
+        self.btnPage.setText(_translate("LazadaMenu", "Page"))
+        self.btnBack.setText(_translate("LazadaMenu", "BACK"))
 
     def getActivate(self):
         activHelp = activateHelper()
@@ -769,7 +819,7 @@ class ViewMenu(object):
         self.label.setGeometry(QtCore.QRect(0, 0, 800, 600))
         self.label.setMinimumSize(QtCore.QSize(800, 600))
         self.label.setMaximumSize(QtCore.QSize(800, 600))
-        self.label.setStyleSheet("background-color: rgb(0, 173, 239);")
+        self.label.setStyleSheet("background-color: rgb(204, 242, 244);")
         self.label.setText("")
         self.label.setObjectName("label")
         self.label_2 = QtWidgets.QLabel(self.widget)
@@ -837,6 +887,19 @@ class ViewMenu(object):
         self.retranslateUi(ViewMenu)
         QtCore.QMetaObject.connectSlotsByName(ViewMenu)
 
+        # Button Styling
+        self.btnBack.setIcon(QtGui.QIcon('assets/back.png'))
+        self.btnBack.setIconSize(QtCore.QSize(32, 32))
+        self.btnBack.setStyleSheet("border:none;font-weight:bold;")
+
+        self.btnRefresh.setIcon(QtGui.QIcon('assets/refresh.png'))
+        self.btnRefresh.setIconSize(QtCore.QSize(32, 32))
+        self.btnRefresh.setStyleSheet("border:none;font-weight:bold;")
+
+        self.btnDelete.setIcon(QtGui.QIcon('assets/delete.png'))
+        self.btnDelete.setIconSize(QtCore.QSize(32, 32))
+        self.btnDelete.setStyleSheet("border:none;font-weight:bold;")
+
         # First Load All Data
         self.loadAllData()
 
@@ -851,15 +914,15 @@ class ViewMenu(object):
         self.label_2.setText(_translate("ViewMenu", "ini Logo Nantinya"))
         self.lblNama.setText(_translate("ViewMenu", self.getName()))
         self.lblSubsribe.setText(_translate("ViewMenu", self.getActivate()))
-        self.btnBack.setText(_translate("ViewMenu", "back to menu"))
         item = self.tableView.horizontalHeaderItem(0)
         item.setText(_translate("ViewMenu", "Commerce"))
         item = self.tableView.horizontalHeaderItem(1)
         item.setText(_translate("ViewMenu", "Tanggal"))
         item = self.tableView.horizontalHeaderItem(2)
         item.setText(_translate("ViewMenu", "Jumlah"))
-        self.btnRefresh.setText(_translate("ViewMenu", "Refresh"))
-        self.btnDelete.setText(_translate("ViewMenu", "Delete All Data"))
+        self.btnBack.setText(_translate("ViewMenu", "BACK"))
+        self.btnRefresh.setText(_translate("ViewMenu", "REFRESH"))
+        self.btnDelete.setText(_translate("ViewMenu", "DELETE"))
 
     def getActivate(self):
         activHelp = activateHelper()
@@ -941,7 +1004,7 @@ class ExportMenu(object):
         self.label.setGeometry(QtCore.QRect(0, 0, 800, 600))
         self.label.setMinimumSize(QtCore.QSize(800, 600))
         self.label.setMaximumSize(QtCore.QSize(800, 600))
-        self.label.setStyleSheet("background-color: rgb(0, 173, 239);")
+        self.label.setStyleSheet("background-color: rgb(204, 242, 244);")
         self.label.setText("")
         self.label.setObjectName("label")
         self.lblSubsribe = QtWidgets.QLabel(self.widget)
@@ -1076,13 +1139,7 @@ class ExportMenu(object):
         self.txtHapus.setObjectName("txtHapus")
         self.btnExport = QtWidgets.QPushButton(self.widget)
         self.btnExport.setGeometry(QtCore.QRect(630, 480, 131, 51))
-        self.btnExport.setStyleSheet("font-size:18px;\n"
-                                     "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));\n"
-                                     "border:none;\n"
-                                     "color:white;\n"
-                                     "font-weight:bold;\n"
-                                     "border-radius:25px;\n"
-                                     "")
+
         self.btnExport.setObjectName("btnExport")
         self.label_12 = QtWidgets.QLabel(self.widget)
         self.label_12.setGeometry(QtCore.QRect(440, 130, 111, 31))
@@ -1107,6 +1164,21 @@ class ExportMenu(object):
         self.retranslateUi(ExportMenu)
         QtCore.QMetaObject.connectSlotsByName(ExportMenu)
 
+        # Button Styling
+        self.btnBack.setIcon(QtGui.QIcon('assets/back.png'))
+        self.btnBack.setIconSize(QtCore.QSize(32, 32))
+        self.btnBack.setStyleSheet("border:none;font-weight:bold;")
+
+        self.btnExport.setIcon(QtGui.QIcon('assets/excel.png'))
+        self.btnExport.setIconSize(QtCore.QSize(32, 32))
+        self.btnExport.setStyleSheet("font-size:18px;\n"
+                                     "background-color: rgb(110, 203, 99);\n"
+                                     "border:none;\n"
+                                     "color:black;\n"
+                                     "font-weight:bold;\n"
+                                     "margin-left:5px;\n"
+                                     "border-radius:10px;")
+
         # Action Button Handle
         self.btnBack.clicked.connect(self.backMenu)
         self.btnExport.clicked.connect(self.exportAction)
@@ -1116,7 +1188,7 @@ class ExportMenu(object):
         ExportMenu.setWindowTitle(_translate("ExportMenu", "SIMAKET"))
         self.lblSubsribe.setText(_translate(
             "ExportMenu", self.getActivate()))
-        self.btnBack.setText(_translate("ExportMenu", "back to menu"))
+        self.btnBack.setText(_translate("ExportMenu", "BACK"))
         self.lblNama.setText(_translate("ExportMenu", self.getName()))
         self.label_2.setText(_translate("ExportMenu", "ini Logo Nantinya"))
         self.label_3.setText(_translate("ExportMenu", "Commerce"))
