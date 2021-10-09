@@ -7,31 +7,30 @@ from selenium import webdriver
 from bs4 import BeautifulSoup
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
-import time
+import undetected_chromedriver as uc
 from pathlib import Path
+import time
 
 
 class shopeePage:
-    # take comment one of them ==
-
     # For Windows
     CHROME_PATH = str(Path().absolute())+'/tools/chromedriver.exe'
     # For Linux
     # CHROME_PATH = str(Path().absolute())+'tools/chromedriver'
-
-    # end of take comment
-
-    options = webdriver.ChromeOptions()
-    options.add_argument("start-maximized")
-    options.add_argument('log-level=2')
     url = ""
     numberMaxPage = 0
     links = []
+    options = webdriver.ChromeOptions()
+    options.add_argument("start-maximized")
+    uc.install(
+        executable_path=CHROME_PATH,
+    )
+    driver = uc
 
     def __init__(self, url):
         self.url = url
         self.links = []
-        self.driver = webdriver.Chrome(self.CHROME_PATH)
+        self.driver = uc.Chrome(options=self.options)
 
     def getMaxPage(self):
         try:
@@ -54,8 +53,6 @@ class shopeePage:
         return self.numberMaxPage
 
     def getAllUrl(self, number):
-        # Limiter
-        # rn = 34 if number >= 34 else int(number)
         i = 0
 
         while(i < int(number)):

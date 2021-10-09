@@ -102,7 +102,7 @@ class databaseLite:
         try:
             con = sqlite3.connect(self.pathdb)
 
-            sql = "DELETE FROM tb_lazada;DELETE FROM tb_shopee;DELETE FROM tb_scrap;DELETE FROM tb_detail;DELETE FROM sqlite_sequence WHERE name = 'tb_scrap';DELETE FROM sqlite_sequence WHERE name = 'tb_lazada';DELETE FROM sqlite_sequence WHERE name = 'tb_shopee';DELETE FROM sqlite_sequence WHERE name = 'tb_detail'; "
+            sql = "DELETE FROM tb_scrap;DELETE FROM tb_detail;DELETE FROM sqlite_sequence WHERE name = 'tb_scrap';;DELETE FROM sqlite_sequence WHERE name = 'tb_detail';VACUUM;"
 
             con.executescript(sql)
 

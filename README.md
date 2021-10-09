@@ -10,12 +10,12 @@ Apps For Scrapping Lazada and Shopee and export the result to excel file
 6. Portable Database
 
 # Development Details
-|     Type     |         Usage         |
-| :----------: | :-------------------: |
-|   Language   | Python Latest Version |
-| Program Type |          GUI          |
-|  Framework   |    Selenium & BS4     |
-|   Database   |       SQLITE 3        |
+| Type         | Usage          |
+| ------------ | -------------- |
+| Language     | Python 3.9     |
+| Program Type | GUI            |
+| Framework    | Selenium & BS4 |
+| Database     | SQLITE 3       |
 
 # Requirements
 1. Python 3.8+
@@ -45,14 +45,14 @@ Apps For Scrapping Lazada and Shopee and export the result to excel file
 
 # Tasklist 
 
-|       Check        |            Task            |   Percent    |
-| :----------------: | :------------------------: | :----------: |
-| :heavy_check_mark: |     Shopee UI Backend      |   __100%__   |
-| :heavy_check_mark: |     Lazada UI Backend      |   __100%__   |
-| :heavy_check_mark: |   Other UI for Read Data   |   __100%__   |
-| :heavy_check_mark: |  Other UI for Export Data  |   __100%__   |
-| :heavy_check_mark: |  Other UI For Index Menu   |   __100%__   |
-| :heavy_check_mark: | Merge All File to One File | __Success__  |
-| :heavy_check_mark: |     Icon For UI Button     |   __Done__   |
-|                    |       Icon For Apps        | __Proccess__ |
-|                    | Optimizing Scrapping Speed |   __Plan__   |
+| Check              | Task                        | Percent      |
+| ------------------ | --------------------------- | ------------ |
+| :heavy_check_mark: | Shopee UI Backend           | __100%__     |
+| :heavy_check_mark: | Lazada UI Backend           | __100%__     |
+| :heavy_check_mark: | Other UI for Read Data      | __100%__     |
+| :heavy_check_mark: | Other UI for Export Data    | __100%__     |
+| :heavy_check_mark: | Other UI For Index Menu     | __100%__     |
+| :heavy_check_mark: | Merge All File to One File  | __Success__  |
+| :heavy_check_mark: | Icon For UI Button          | __Done__     |
+|                    | Icon For Apps               | __Proccess__ |
+|                    | Optimizing Scrapping Lazada | __Success__  |

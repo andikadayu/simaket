@@ -40,19 +40,20 @@ class LoginPage(object):
         self.label.setText("")
         self.label.setObjectName("label")
         self.textTitle = QtWidgets.QLabel(self.widget)
-        self.textTitle.setGeometry(QtCore.QRect(330, 20, 131, 61))
+        self.textTitle.setGeometry(QtCore.QRect(330, 20, 131, 91))
         font = QtGui.QFont()
         font.setFamily("MS Sans Serif")
         font.setPointSize(22)
         font.setBold(True)
         font.setWeight(75)
         self.textTitle.setFont(font)
-        self.textTitle.setStyleSheet("color: rgb(0, 0, 0);")
+
         self.textTitle.setObjectName("textTitle")
         self.textLogin = QtWidgets.QLabel(self.widget)
-        self.textLogin.setGeometry(QtCore.QRect(260, 70, 291, 61))
+        self.textLogin.setGeometry(QtCore.QRect(220, 85, 355, 61))
+        self.textLogin.setAlignment(QtCore.Qt.AlignCenter)
         font = QtGui.QFont()
-        font.setPointSize(18)
+        font.setPointSize(16)
         font.setBold(True)
         font.setWeight(75)
         self.textLogin.setFont(font)
@@ -122,6 +123,9 @@ class LoginPage(object):
                                     "margin-left:5px;\n"
                                     "border-radius:10px;")
 
+        self.textTitle.setPixmap(QtGui.QPixmap("assets/standalone.png"))
+        self.textTitle.setScaledContents(True)
+
         # for handle action button
         self.btnLogin.clicked.connect(self.loginAction)
 
@@ -130,7 +134,7 @@ class LoginPage(object):
         LoginPage.setWindowTitle(_translate("LoginPage", "SIMAKET"))
         self.textTitle.setText(_translate("LoginPage", "SIMAKET"))
         self.textLogin.setText(_translate(
-            "LoginPage", "Welcome to Login Page"))
+            "LoginPage", "SIMAKET\nAplikasi Optimalisasi Marketplace"))
         self.textLogin_2.setText(_translate("LoginPage", "Email"))
         self.textLogin_3.setText(_translate("LoginPage", "Password"))
         self.btnLogin.setText(_translate("LoginPage", "Login"))
@@ -922,7 +926,7 @@ class ViewMenu(object):
         item.setText(_translate("ViewMenu", "Jumlah"))
         self.btnBack.setText(_translate("ViewMenu", "BACK"))
         self.btnRefresh.setText(_translate("ViewMenu", "REFRESH"))
-        self.btnDelete.setText(_translate("ViewMenu", "DELETE"))
+        self.btnDelete.setText(_translate("ViewMenu", "DELETE ALL"))
 
     def getActivate(self):
         activHelp = activateHelper()
