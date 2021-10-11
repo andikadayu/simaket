@@ -2,3 +2,4 @@ venv
 models/__pycache__
 export/*
 chromedriver.exe
+__pycache__

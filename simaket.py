@@ -28,6 +28,8 @@ class LoginPage(object):
         LoginPage.setMinimumSize(QtCore.QSize(800, 600))
         LoginPage.setMaximumSize(QtCore.QSize(800, 600))
         LoginPage.setAutoFillBackground(True)
+        LoginPage.setWindowIcon(
+            QtGui.QIcon("assets/standalone.png"))
         self.centralwidget = QtWidgets.QWidget(LoginPage)
         self.centralwidget.setObjectName("centralwidget")
         self.widget = QtWidgets.QWidget(self.centralwidget)
@@ -143,10 +145,9 @@ class LoginPage(object):
         emails = self.txtEmail.text()
         passwords = self.txtPassword.text()
 
-        if emails == '' and passwords == '':
-            lin = QtWidgets.QMessageBox(self.centralwidget)
-            lin.setText('Complete the form')
-            lin.exec()
+        if emails == '' or passwords == '':
+            lin = QtWidgets.QMessageBox.warning(
+                self.centralwidget, "SIMAKET", "Complete the form")
         else:
             hostlink = "https://marketing.pt-ckit.com/api/login_apps.php"
             datas = {'email': emails, 'password': passwords}
@@ -158,9 +159,8 @@ class LoginPage(object):
                 if(retcode['status'] == 'OK'):
                     with open(str(Path().absolute())+'/config/config.yaml', 'w') as f:
                         yaml.dump(retcode, f)
-                    lin = QtWidgets.QMessageBox(self.centralwidget)
-                    lin.setText('Login Success')
-                    lin.exec()
+                    lin = QtWidgets.QMessageBox.information(
+                        self.centralwidget, "SIMAKET", "Login Success")
 
                     Main_Window.close()
 
@@ -186,6 +186,8 @@ class indexMenu(object):
         indexMenu.resize(800, 600)
         indexMenu.setMinimumSize(QtCore.QSize(800, 600))
         indexMenu.setMaximumSize(QtCore.QSize(800, 600))
+        indexMenu.setWindowIcon(
+            QtGui.QIcon("assets/standalone.png"))
         self.centralwidget = QtWidgets.QWidget(indexMenu)
         self.centralwidget.setObjectName("centralwidget")
         self.widget = QtWidgets.QWidget(self.centralwidget)
@@ -205,7 +207,7 @@ class indexMenu(object):
         font.setBold(True)
         font.setWeight(75)
         self.label_2.setFont(font)
-        self.label_2.setStyleSheet("border:1px solid white;")
+        self.label_2.setStyleSheet("border:1px solid white; padding-top:10px;")
         self.label_2.setWordWrap(True)
         self.label_2.setObjectName("label_2")
         self.lblNama = QtWidgets.QLabel(self.widget)
@@ -304,6 +306,8 @@ class indexMenu(object):
                                      "margin-left:5px;\n"
                                      "border-radius:10px;")
 
+        self.setHeader()
+
         # Button Handle Action
         self.btnExport.clicked.connect(self.toExport)
         self.btnLazada.clicked.connect(self.toLazada)
@@ -324,6 +328,10 @@ class indexMenu(object):
         self.label_6.setText(_translate("indexMenu", "Export Excel"))
         self.btnLogout.setText(_translate("indexMenu", "Logout"))
 
+    def setHeader(self):
+        self.label_2.setPixmap(QtGui.QPixmap("assets/standalone.png"))
+        self.label_2.setScaledContents(True)
+
     def getActivate(self):
         activHelp = activateHelper()
         stats = activHelp.getActivate()
@@ -334,9 +342,9 @@ class indexMenu(object):
             return stats['active_text']
 
     def hasErrorActivate(self, text):
-        lin = QtWidgets.QMessageBox(self.centralwidget)
-        lin.setText(text)
-        lin.exec()
+        lin = QtWidgets.QMessageBox.warning(
+            self.centralwidget, "SIMAKET", text)
+        self.LogoutAction()
 
     def getName(self):
         activHelp = activateHelper()
@@ -379,6 +387,8 @@ class ShopeeMenu(object):
         ShopeeMenu.resize(800, 600)
         ShopeeMenu.setMinimumSize(QtCore.QSize(800, 600))
         ShopeeMenu.setMaximumSize(QtCore.QSize(800, 600))
+        ShopeeMenu.setWindowIcon(
+            QtGui.QIcon("assets/standalone.png"))
         self.centralwidget = QtWidgets.QWidget(ShopeeMenu)
         self.centralwidget.setObjectName("centralwidget")
         self.widget = QtWidgets.QWidget(self.centralwidget)
@@ -408,7 +418,7 @@ class ShopeeMenu(object):
         font.setBold(True)
         font.setWeight(75)
         self.label_2.setFont(font)
-        self.label_2.setStyleSheet("border:1px solid white;")
+        self.label_2.setStyleSheet("border:1px solid white;padding-top:10px;")
         self.label_2.setWordWrap(True)
         self.label_2.setObjectName("label_2")
         self.label_3 = QtWidgets.QLabel(self.widget)
@@ -458,6 +468,8 @@ class ShopeeMenu(object):
         self.retranslateUi(ShopeeMenu)
         QtCore.QMetaObject.connectSlotsByName(ShopeeMenu)
 
+        self.setHeader()
+
         # Button Styling
         self.btnBack.setIcon(QtGui.QIcon('assets/back.png'))
         self.btnBack.setIconSize(QtCore.QSize(32, 32))
@@ -502,6 +514,10 @@ class ShopeeMenu(object):
         self.btnShop.setText(_translate("ShopeeMenu", "Shop"))
         self.btnBack.setText(_translate("ShopeeMenu", "BACK"))
 
+    def setHeader(self):
+        self.label_2.setPixmap(QtGui.QPixmap("assets/standalone.png"))
+        self.label_2.setScaledContents(True)
+
     def getActivate(self):
         activHelp = activateHelper()
         stats = activHelp.getActivate()
@@ -512,9 +528,8 @@ class ShopeeMenu(object):
             return stats['active_text']
 
     def hasErrorActivate(self, text):
-        lin = QtWidgets.QMessageBox(self.centralwidget)
-        lin.setText(text)
-        lin.exec()
+        lin = QtWidgets.QMessageBox.warning(
+            self.centralwidget, "SIMAKET", text)
         self.LogoutAction()
 
     def getName(self):
@@ -526,9 +541,8 @@ class ShopeeMenu(object):
         links = self.txtItem.toPlainText()
         datenow = str(datetime.date(datetime.now()))
         if links == '':
-            lin = QtWidgets.QMessageBox(self.centralwidget)
-            lin.setText('Complete the form')
-            lin.exec()
+            lin = QtWidgets.QMessageBox.warning(
+                self.centralwidget, "SIMAKET", "Complete the form")
         else:
             alllink = links.split(',')
             dblite = databaseLite()
@@ -537,9 +551,8 @@ class ShopeeMenu(object):
                 shopee = shopeeDetail(str(ans))
                 shopee.getData(ids)
 
-            linz = QtWidgets.QMessageBox(self.centralwidget)
-            linz.setText('Done')
-            linz.exec()
+            linz = QtWidgets.QMessageBox.information(
+                self.centralwidget, "SIMAKET", "Done")
             self.txtItem.setPlainText("")
 
     def shopAction(self):
@@ -549,9 +562,8 @@ class ShopeeMenu(object):
         datenow = str(datetime.date(datetime.now()))
 
         if links == '':
-            lin = QtWidgets.QMessageBox(self.centralwidget)
-            lin.setText('Complete the form')
-            lin.exec()
+            lin = QtWidgets.QMessageBox.warning(
+                self.centralwidget, "SIMAKET", "Complete the form")
         else:
             allLink = links.split(',')
             dblite = databaseLite()
@@ -568,9 +580,8 @@ class ShopeeMenu(object):
                 getlink = []
                 shopees.shutDown()
 
-            linz = QtWidgets.QMessageBox(self.centralwidget)
-            linz.setText('Done')
-            linz.exec()
+            linz = QtWidgets.QMessageBox.information(
+                self.centralwidget, "SIMAKET", "Done")
             self.txtShop.setPlainText("")
 
     def backMenu(self):
@@ -595,6 +606,8 @@ class LazadaMenu(object):
         LazadaMenu.resize(800, 600)
         LazadaMenu.setMinimumSize(QtCore.QSize(800, 600))
         LazadaMenu.setMaximumSize(QtCore.QSize(800, 600))
+        LazadaMenu.setWindowIcon(
+            QtGui.QIcon("assets/standalone.png"))
         self.centralwidget = QtWidgets.QWidget(LazadaMenu)
         self.centralwidget.setObjectName("centralwidget")
         self.widget = QtWidgets.QWidget(self.centralwidget)
@@ -622,7 +635,7 @@ class LazadaMenu(object):
         font.setBold(True)
         font.setWeight(75)
         self.label_2.setFont(font)
-        self.label_2.setStyleSheet("border:1px solid white;")
+        self.label_2.setStyleSheet("border:1px solid white;padding-top:10px;")
         self.label_2.setWordWrap(True)
         self.label_2.setObjectName("label_2")
         self.label_3 = QtWidgets.QLabel(self.widget)
@@ -692,6 +705,8 @@ class LazadaMenu(object):
                                    "border-radius:25px;\n"
                                    "")
 
+        self.setHeader()
+
         self.retranslateUi(LazadaMenu)
         QtCore.QMetaObject.connectSlotsByName(LazadaMenu)
 
@@ -707,12 +722,16 @@ class LazadaMenu(object):
         self.lblNama.setText(_translate("LazadaMenu", self.getName()))
         self.lblSubsribe.setText(_translate(
             "LazadaMenu", self.getActivate()))
-        self.label_2.setText(_translate("LazadaMenu", "ini Logo Nantinya"))
+        # self.label_2.setText(_translate("LazadaMenu", "ini Logo Nantinya"))
         self.label_3.setText(_translate("LazadaMenu", "Scrap per Item"))
         self.label_4.setText(_translate("LazadaMenu", "Scrap per Page"))
         self.btnItem.setText(_translate("LazadaMenu", "Item"))
         self.btnPage.setText(_translate("LazadaMenu", "Page"))
         self.btnBack.setText(_translate("LazadaMenu", "BACK"))
+
+    def setHeader(self):
+        self.label_2.setPixmap(QtGui.QPixmap("assets/standalone.png"))
+        self.label_2.setScaledContents(True)
 
     def getActivate(self):
         activHelp = activateHelper()
@@ -724,9 +743,8 @@ class LazadaMenu(object):
             return stats['active_text']
 
     def hasErrorActivate(self, text):
-        lin = QtWidgets.QMessageBox(self.centralwidget)
-        lin.setText(text)
-        lin.exec()
+        lin = QtWidgets.QMessageBox.warning(
+            self.centralwidget, "SIMAKET", text)
         self.LogoutAction()
 
     def getName(self):
@@ -738,9 +756,8 @@ class LazadaMenu(object):
         links = self.txtItem.toPlainText()
         datenow = str(datetime.date(datetime.now()))
         if links == '':
-            lin = QtWidgets.QMessageBox(self.centralwidget)
-            lin.setText('Complete the form')
-            lin.exec()
+            lins = QtWidgets.QMessageBox.warning(
+                self.centralwidget, "SIMAKET", "Complete the form")
         else:
             dblite = databaseLite()
             ids = dblite.insert_getId("tb_scrap", "(NULL,'"+datenow+"','2')")
@@ -753,9 +770,8 @@ class LazadaMenu(object):
                 lazdet.getData(jsdata, jsimage, ids)
                 lazitem.shutDown()
 
-            linz = QtWidgets.QMessageBox(self.centralwidget)
-            linz.setText('Done')
-            linz.exec()
+            linz = QtWidgets.QMessageBox.information(
+                self.centralwidget, "SIMAKET", "Done")
             self.txtItem.setPlainText("")
 
     def pageAction(self):
@@ -764,9 +780,8 @@ class LazadaMenu(object):
         datenow = str(datetime.date(datetime.now()))
         link1 = []
         if links == '':
-            lin = QtWidgets.QMessageBox(self.centralwidget)
-            lin.setText('Complete the form')
-            lin.exec()
+            lins = QtWidgets.QMessageBox.warning(
+                self.centralwidget, "SIMAKET", "Complete the form")
         else:
             dblite = databaseLite()
             ids = dblite.insert_getId("tb_scrap", "(NULL,'"+datenow+"','2')")
@@ -785,9 +800,8 @@ class LazadaMenu(object):
                     lazdet.getData(jsdata, jsimage, ids)
                     lazitem.shutDown()
 
-            linz = QtWidgets.QMessageBox(self.centralwidget)
-            linz.setText('Done')
-            linz.exec()
+            linz = QtWidgets.QMessageBox.information(
+                self.centralwidget, "SIMAKET", "Done")
             self.txtPage.setPlainText("")
 
     def backMenu(self):
@@ -812,6 +826,8 @@ class ViewMenu(object):
         ViewMenu.resize(800, 600)
         ViewMenu.setMinimumSize(QtCore.QSize(800, 600))
         ViewMenu.setMaximumSize(QtCore.QSize(800, 600))
+        ViewMenu.setWindowIcon(
+            QtGui.QIcon("assets/standalone.png"))
         self.centralwidget = QtWidgets.QWidget(ViewMenu)
         self.centralwidget.setObjectName("centralwidget")
         self.widget = QtWidgets.QWidget(self.centralwidget)
@@ -833,7 +849,7 @@ class ViewMenu(object):
         font.setBold(True)
         font.setWeight(75)
         self.label_2.setFont(font)
-        self.label_2.setStyleSheet("border:1px solid white;")
+        self.label_2.setStyleSheet("border:1px solid white;padding-top:10px;")
         self.label_2.setWordWrap(True)
         self.label_2.setObjectName("label_2")
         self.lblNama = QtWidgets.QLabel(self.widget)
@@ -891,6 +907,8 @@ class ViewMenu(object):
         self.retranslateUi(ViewMenu)
         QtCore.QMetaObject.connectSlotsByName(ViewMenu)
 
+        self.setHeader()
+
         # Button Styling
         self.btnBack.setIcon(QtGui.QIcon('assets/back.png'))
         self.btnBack.setIconSize(QtCore.QSize(32, 32))
@@ -928,6 +946,10 @@ class ViewMenu(object):
         self.btnRefresh.setText(_translate("ViewMenu", "REFRESH"))
         self.btnDelete.setText(_translate("ViewMenu", "DELETE ALL"))
 
+    def setHeader(self):
+        self.label_2.setPixmap(QtGui.QPixmap("assets/standalone.png"))
+        self.label_2.setScaledContents(True)
+
     def getActivate(self):
         activHelp = activateHelper()
         stats = activHelp.getActivate()
@@ -938,9 +960,8 @@ class ViewMenu(object):
             return stats['active_text']
 
     def hasErrorActivate(self, text):
-        lin = QtWidgets.QMessageBox(self.centralwidget)
-        lin.setText(text)
-        lin.exec()
+        lin = QtWidgets.QMessageBox.warning(
+            self.centralwidget, "SIMAKET", text)
         self.LogoutAction()
 
     def getName(self):
@@ -966,15 +987,14 @@ class ViewMenu(object):
             tbrow += 1
 
     def deleteAllData(self):
-        linz = QtWidgets.QMessageBox.question(self.centralwidget, "Confirm Delete", "Are you sure to delete all data?",
+        linz = QtWidgets.QMessageBox.question(self.centralwidget, "SIMAKET", "Are you sure to delete all data?",
                                               QtWidgets.QMessageBox.StandardButton.Yes, QtWidgets.QMessageBox.StandardButton.No)
         if linz == QtWidgets.QMessageBox.StandardButton.Yes:
             dblite = databaseLite()
             dblite.truncate_database()
 
-            lin = QtWidgets.QMessageBox(self.centralwidget)
-            lin.setText("Delete All Data Done")
-            lin.exec()
+            lin = QtWidgets.QMessageBox.information(
+                self.centralwidget, "SIMAKET", "Delete All Data Done")
             self.loadAllData()
 
     def backMenu(self):
@@ -999,6 +1019,8 @@ class ExportMenu(object):
         ExportMenu.resize(800, 600)
         ExportMenu.setMinimumSize(QtCore.QSize(800, 600))
         ExportMenu.setMaximumSize(QtCore.QSize(800, 600))
+        ExportMenu.setWindowIcon(
+            QtGui.QIcon("assets/standalone.png"))
         self.centralwidget = QtWidgets.QWidget(ExportMenu)
         self.centralwidget.setObjectName("centralwidget")
         self.widget = QtWidgets.QWidget(self.centralwidget)
@@ -1031,7 +1053,7 @@ class ExportMenu(object):
         font.setBold(True)
         font.setWeight(75)
         self.label_2.setFont(font)
-        self.label_2.setStyleSheet("border:1px solid white;")
+        self.label_2.setStyleSheet("border:1px solid white;padding-top:10px;")
         self.label_2.setWordWrap(True)
         self.label_2.setObjectName("label_2")
         self.label_3 = QtWidgets.QLabel(self.widget)
@@ -1168,6 +1190,8 @@ class ExportMenu(object):
         self.retranslateUi(ExportMenu)
         QtCore.QMetaObject.connectSlotsByName(ExportMenu)
 
+        self.setHeader()
+
         # Button Styling
         self.btnBack.setIcon(QtGui.QIcon('assets/back.png'))
         self.btnBack.setIconSize(QtCore.QSize(32, 32))
@@ -1210,6 +1234,10 @@ class ExportMenu(object):
         self.btnExport.setText(_translate("ExportMenu", "Export"))
         self.label_12.setText(_translate("ExportMenu", "Nama File*"))
 
+    def setHeader(self):
+        self.label_2.setPixmap(QtGui.QPixmap("assets/standalone.png"))
+        self.label_2.setScaledContents(True)
+
     def getActivate(self):
         activHelp = activateHelper()
         stats = activHelp.getActivate()
@@ -1220,9 +1248,8 @@ class ExportMenu(object):
             return stats['active_text']
 
     def hasErrorActivate(self, text):
-        lin = QtWidgets.QMessageBox(self.centralwidget)
-        lin.setText(text)
-        lin.exec()
+        lin = QtWidgets.QMessageBox.warning(
+            self.centralwidget, "SIMAKET", text)
         self.LogoutAction()
 
     def getName(self):
@@ -1248,9 +1275,8 @@ class ExportMenu(object):
             idc = 2
 
         if nama_file == '' or preorder == '' or kategori == '' or markup == '' or berat == '' or min_pesan == '' or stok == '':
-            lin = QtWidgets.QMessageBox(self.centralwidget)
-            lin.setText('Complete the form')
-            lin.exec()
+            lin = QtWidgets.QMessageBox.warning(
+                self.centralwidget, "SIMAKET", "Complete the form")
         else:
             counts = dblite.get_count("tb_detail", "tb_detail.id_detail",
                                       "INNER JOIN tb_scrap ON tb_scrap.id_scrap = tb_detail.id_scrape", "tb_scrap.id_commerce='"+str(idc)+"'")
@@ -1262,9 +1288,8 @@ class ExportMenu(object):
                         "299", f, idc, nama_file, preorder, etalase, kategori, markup, berat, min_pesan, stok, hapus_kata)
 
                 if f == int(counts) - 1:
-                    lin = QtWidgets.QMessageBox(self.centralwidget)
-                    lin.setText('Done')
-                    lin.exec()
+                    lin = QtWidgets.QMessageBox.information(
+                        self.centralwidget, "SIMAKET", "Done")
 
                 f += 1
 
