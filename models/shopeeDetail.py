@@ -32,7 +32,7 @@ class shopeeDetail:
         self.url = url
 
     def getData(self, ids):
-        link = self.url.replace('?position=', '.')
+        link = self.url.replace('?', '.')
 
         links = link.split('-i.')
         linkss = links[1]
@@ -48,8 +48,11 @@ class shopeeDetail:
 
             resp = requests.get(hostlink, params=datas, timeout=30)
             jsons = resp.json()
-            for ans in jsons['data']['images']:
-                self.image.append(ans)
+            if jsons['data']['images'] != '':
+                for ans in jsons['data']['images']:
+                    self.image.append(ans)
+            else:
+                self.image.append(jsons['data']['image'])
 
             self.gambar1 = json.dumps(self.image)
 
