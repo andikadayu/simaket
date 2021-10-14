@@ -111,6 +111,10 @@ class LoginPage(object):
         self.statusbar.setObjectName("statusbar")
         LoginPage.setStatusBar(self.statusbar)
 
+        self.linkNew = QtWidgets.QPushButton(self.widget)
+        self.linkNew.setGeometry(QtCore.QRect(400, 460, 200, 51))
+        self.linkNew.setObjectName("linkNew")
+
         self.retranslateUi(LoginPage)
         QtCore.QMetaObject.connectSlotsByName(LoginPage)
 
@@ -125,11 +129,22 @@ class LoginPage(object):
                                     "margin-left:5px;\n"
                                     "border-radius:10px;")
 
+        self.linkNew.setIcon(QtGui.QIcon('assets/register.png'))
+        self.linkNew.setIconSize(QtCore.QSize(48, 48))
+        self.linkNew.setStyleSheet("font-size:18px;\n"
+                                   "background-color: rgb(210, 203, 99);\n"
+                                   "border:none;\n"
+                                   "color:black;\n"
+                                   "font-weight:bold;\n"
+                                   "margin-left:5px;\n"
+                                   "border-radius:10px;")
+
         self.textTitle.setPixmap(QtGui.QPixmap("assets/standalone.png"))
         self.textTitle.setScaledContents(True)
 
         # for handle action button
         self.btnLogin.clicked.connect(self.loginAction)
+        self.linkNew.clicked.connect(self.openLink)
 
     def retranslateUi(self, LoginPage):
         _translate = QtCore.QCoreApplication.translate
@@ -140,6 +155,14 @@ class LoginPage(object):
         self.textLogin_2.setText(_translate("LoginPage", "Email"))
         self.textLogin_3.setText(_translate("LoginPage", "Password"))
         self.btnLogin.setText(_translate("LoginPage", "Login"))
+        self.linkNew.setText(_translate("LoginPage", "Beli Akun Baru"))
+
+    def openLink(self):
+        QtGui.QDesktopServices.openUrl(QtCore.QUrl(
+            "https://marketing.pt-ckit.com/register.php"))
+        # QtGui.QDesktopServices.openUrl(QtCore.QUrl(
+        #     "http:localhost/marketplace/register.php"))
+        return
 
     def loginAction(self):
         emails = self.txtEmail.text()
@@ -150,6 +173,7 @@ class LoginPage(object):
                 self.centralwidget, "SIMAKET", "Complete the form")
         else:
             hostlink = "https://marketing.pt-ckit.com/api/login_apps.php"
+            # hostlink = "http://localhost/marketplace/api/login_apps.php"
             datas = {'email': emails, 'password': passwords}
 
             try:
@@ -211,15 +235,26 @@ class indexMenu(object):
         self.label_2.setWordWrap(True)
         self.label_2.setObjectName("label_2")
         self.lblNama = QtWidgets.QLabel(self.widget)
-        self.lblNama.setGeometry(QtCore.QRect(110, 25, 691, 31))
+        self.lblNama.setGeometry(QtCore.QRect(110, 15, 691, 50))
         self.lblNama.setStyleSheet("font-size:14px;\n"
                                    "font-weight:350;")
         self.lblNama.setObjectName("lblNama")
         self.lblSubsribe = QtWidgets.QLabel(self.widget)
-        self.lblSubsribe.setGeometry(QtCore.QRect(110, 80, 691, 31))
+        self.lblSubsribe.setGeometry(QtCore.QRect(110, 60, 691, 31))
         self.lblSubsribe.setStyleSheet("font-size:14px;\n"
                                        "font-weight:250;")
         self.lblSubsribe.setObjectName("lblSubsribe")
+
+        # For AddSubribe Text
+        self.lblPanjang = QtWidgets.QTextBrowser(self.widget)
+        self.lblPanjang.setOpenExternalLinks(True)
+        self.lblPanjang.setGeometry(QtCore.QRect(110, 90, 691, 51))
+        self.lblPanjang.setStyleSheet(
+            "font-size:14px;\nfont-weight:250;border:none;background-color: rgb(204, 242, 244);margin:0;")
+        self.lblPanjang.setObjectName("lblPanjang")
+        self.lblPanjang.append(
+            "<p>Silakan klik disini (<a href=https://cv-globalsolusindo.com style=text-decoration:none>cv-globalsolusindo.com</a>) untuk harga perpanjangan masa berlangganan atau <br>WA (<a href=https://wa.me/6281312212015 style=text-decoration:none>0813 1221 2015</a>). Klik <a href="+sublinks+" style=text-decoration:none>disini</a> untuk beli perpanjangan akun baru</p>")
+
         self.btnShopee = QtWidgets.QPushButton(self.widget)
         self.btnShopee.setGeometry(QtCore.QRect(50, 200, 120, 120))
         self.btnShopee.setObjectName("btnShopee")
@@ -348,7 +383,10 @@ class indexMenu(object):
 
     def getName(self):
         activHelp = activateHelper()
-        return activHelp.getName()
+        text = "Nama   : "+activHelp.openconfig("name")+" ("+activHelp.openconfig("email") + \
+            " / "+activHelp.openconfig("no_telp") + \
+            ")\nAlamat : "+activHelp.openconfig("alamat")
+        return text
 
     def toShopee(self):
         Main_Window.close()
@@ -402,15 +440,26 @@ class ShopeeMenu(object):
         self.label.setText("")
         self.label.setObjectName("label")
         self.lblNama = QtWidgets.QLabel(self.widget)
-        self.lblNama.setGeometry(QtCore.QRect(110, 25, 691, 31))
+        self.lblNama.setGeometry(QtCore.QRect(110, 15, 691, 50))
         self.lblNama.setStyleSheet("font-size:14px;\n"
                                    "font-weight:350;")
         self.lblNama.setObjectName("lblNama")
         self.lblSubsribe = QtWidgets.QLabel(self.widget)
-        self.lblSubsribe.setGeometry(QtCore.QRect(110, 80, 691, 31))
+        self.lblSubsribe.setGeometry(QtCore.QRect(110, 60, 691, 31))
         self.lblSubsribe.setStyleSheet("font-size:14px;\n"
                                        "font-weight:250;")
         self.lblSubsribe.setObjectName("lblSubsribe")
+
+        # For AddSubribe Text
+        self.lblPanjang = QtWidgets.QTextBrowser(self.widget)
+        self.lblPanjang.setOpenExternalLinks(True)
+        self.lblPanjang.setGeometry(QtCore.QRect(110, 90, 691, 51))
+        self.lblPanjang.setStyleSheet(
+            "font-size:14px;\nfont-weight:250;border:none;background-color: rgb(204, 242, 244);margin:0;")
+        self.lblPanjang.setObjectName("lblPanjang")
+        self.lblPanjang.append(
+            "<p>Silakan klik disini (<a href=https://cv-globalsolusindo.com style=text-decoration:none>cv-globalsolusindo.com</a>) untuk harga perpanjangan masa berlangganan atau <br>WA (<a href=https://wa.me/6281312212015 style=text-decoration:none>0813 1221 2015</a>). Klik <a href="+sublinks+" style=text-decoration:none>disini</a> untuk beli perpanjangan akun baru</p>")
+
         self.label_2 = QtWidgets.QLabel(self.widget)
         self.label_2.setGeometry(QtCore.QRect(10, 20, 91, 91))
         font = QtGui.QFont()
@@ -475,7 +524,7 @@ class ShopeeMenu(object):
         self.btnBack.setIconSize(QtCore.QSize(32, 32))
         self.btnBack.setStyleSheet("border:none;font-weight:bold;")
 
-        self.btnShop.setIcon(QtGui.QIcon('assets/web-crawler.png'))
+        self.btnShop.setIcon(QtGui.QIcon('assets/link.png'))
         self.btnShop.setIconSize(QtCore.QSize(64, 64))
         self.btnShop.setStyleSheet("font-size:18px;\n"
                                    "background-color: rgb(110, 203, 99);\n"
@@ -485,7 +534,7 @@ class ShopeeMenu(object):
                                    "border-radius:25px;\n"
                                    "")
 
-        self.btnItem.setIcon(QtGui.QIcon('assets/web-crawler.png'))
+        self.btnItem.setIcon(QtGui.QIcon('assets/link.png'))
         self.btnItem.setIconSize(QtCore.QSize(64, 64))
         self.btnItem.setStyleSheet("font-size:18px;\n"
                                    "background-color: rgb(110, 203, 99);\n"
@@ -534,7 +583,10 @@ class ShopeeMenu(object):
 
     def getName(self):
         activHelp = activateHelper()
-        return activHelp.getName()
+        text = "Nama   : "+activHelp.openconfig("name")+" ("+activHelp.openconfig("email") + \
+            " / "+activHelp.openconfig("no_telp") + \
+            ")\nAlamat : "+activHelp.openconfig("alamat")
+        return text
 
     def itemAction(self):
         ids = 0
@@ -621,13 +673,24 @@ class LazadaMenu(object):
         self.label.setText("")
         self.label.setObjectName("label")
         self.lblNama = QtWidgets.QLabel(self.widget)
-        self.lblNama.setGeometry(QtCore.QRect(110, 25, 691, 31))
+        self.lblNama.setGeometry(QtCore.QRect(110, 15, 691, 50))
         self.lblNama.setStyleSheet("font-size:14px;font-weight:350;")
         self.lblNama.setObjectName("lblNama")
         self.lblSubsribe = QtWidgets.QLabel(self.widget)
-        self.lblSubsribe.setGeometry(QtCore.QRect(110, 80, 691, 31))
+        self.lblSubsribe.setGeometry(QtCore.QRect(110, 60, 691, 31))
         self.lblSubsribe.setStyleSheet("font-size:14px;font-weight:250;")
         self.lblSubsribe.setObjectName("lblSubsribe")
+
+        # For AddSubribe Text
+        self.lblPanjang = QtWidgets.QTextBrowser(self.widget)
+        self.lblPanjang.setOpenExternalLinks(True)
+        self.lblPanjang.setGeometry(QtCore.QRect(110, 90, 691, 51))
+        self.lblPanjang.setStyleSheet(
+            "font-size:14px;\nfont-weight:250;border:none;background-color: rgb(204, 242, 244);margin:0;")
+        self.lblPanjang.setObjectName("lblPanjang")
+        self.lblPanjang.append(
+            "<p>Silakan klik disini (<a href=https://cv-globalsolusindo.com style=text-decoration:none>cv-globalsolusindo.com</a>) untuk harga perpanjangan masa berlangganan atau <br>WA (<a href=https://wa.me/6281312212015 style=text-decoration:none>0813 1221 2015</a>). Klik <a href="+sublinks+" style=text-decoration:none>disini</a> untuk beli perpanjangan akun baru</p>")
+
         self.label_2 = QtWidgets.QLabel(self.widget)
         self.label_2.setGeometry(QtCore.QRect(10, 20, 91, 91))
         font = QtGui.QFont()
@@ -685,7 +748,7 @@ class LazadaMenu(object):
         self.btnBack.setIconSize(QtCore.QSize(32, 32))
         self.btnBack.setStyleSheet("border:none;font-weight:bold;")
 
-        self.btnPage.setIcon(QtGui.QIcon('assets/web-crawler.png'))
+        self.btnPage.setIcon(QtGui.QIcon('assets/link.png'))
         self.btnPage.setIconSize(QtCore.QSize(64, 64))
         self.btnPage.setStyleSheet("font-size:18px;\n"
                                    "background-color: rgb(110, 203, 99);\n"
@@ -695,7 +758,7 @@ class LazadaMenu(object):
                                    "border-radius:25px;\n"
                                    "")
 
-        self.btnItem.setIcon(QtGui.QIcon('assets/web-crawler.png'))
+        self.btnItem.setIcon(QtGui.QIcon('assets/link.png'))
         self.btnItem.setIconSize(QtCore.QSize(64, 64))
         self.btnItem.setStyleSheet("font-size:18px;\n"
                                    "background-color: rgb(110, 203, 99);\n"
@@ -749,7 +812,10 @@ class LazadaMenu(object):
 
     def getName(self):
         activHelp = activateHelper()
-        return activHelp.getName()
+        text = "Nama   : "+activHelp.openconfig("name")+" ("+activHelp.openconfig("email") + \
+            " / "+activHelp.openconfig("no_telp") + \
+            ")\nAlamat : "+activHelp.openconfig("alamat")
+        return text
 
     def itemAction(self):
         ids = 0
@@ -853,15 +919,26 @@ class ViewMenu(object):
         self.label_2.setWordWrap(True)
         self.label_2.setObjectName("label_2")
         self.lblNama = QtWidgets.QLabel(self.widget)
-        self.lblNama.setGeometry(QtCore.QRect(110, 15, 691, 31))
+        self.lblNama.setGeometry(QtCore.QRect(110, 15, 691, 50))
         self.lblNama.setStyleSheet("font-size:14px;\n"
                                    "font-weight:350;")
         self.lblNama.setObjectName("lblNama")
         self.lblSubsribe = QtWidgets.QLabel(self.widget)
-        self.lblSubsribe.setGeometry(QtCore.QRect(110, 70, 691, 31))
+        self.lblSubsribe.setGeometry(QtCore.QRect(110, 60, 691, 31))
         self.lblSubsribe.setStyleSheet("font-size:14px;\n"
                                        "font-weight:250;")
         self.lblSubsribe.setObjectName("lblSubsribe")
+
+        # For AddSubribe Text
+        self.lblPanjang = QtWidgets.QTextBrowser(self.widget)
+        self.lblPanjang.setOpenExternalLinks(True)
+        self.lblPanjang.setGeometry(QtCore.QRect(110, 90, 691, 51))
+        self.lblPanjang.setStyleSheet(
+            "font-size:14px;\nfont-weight:250;border:none;background-color: rgb(204, 242, 244);margin:0;")
+        self.lblPanjang.setObjectName("lblPanjang")
+        self.lblPanjang.append(
+            "<p>Silakan klik disini (<a href=https://cv-globalsolusindo.com style=text-decoration:none>cv-globalsolusindo.com</a>) untuk harga perpanjangan masa berlangganan atau <br>WA (<a href=https://wa.me/6281312212015 style=text-decoration:none>0813 1221 2015</a>). Klik <a href="+sublinks+" style=text-decoration:none>disini</a> untuk beli perpanjangan akun baru</p>")
+
         self.btnBack = QtWidgets.QPushButton(self.widget)
         self.btnBack.setGeometry(QtCore.QRect(10, 120, 121, 31))
         self.btnBack.setObjectName("btnBack")
@@ -966,7 +1043,10 @@ class ViewMenu(object):
 
     def getName(self):
         activHelp = activateHelper()
-        return activHelp.getName()
+        text = "Nama   : "+activHelp.openconfig("name")+" ("+activHelp.openconfig("email") + \
+            " / "+activHelp.openconfig("no_telp") + \
+            ")\nAlamat : "+activHelp.openconfig("alamat")
+        return text
 
     def loadAllData(self):
 
@@ -1034,15 +1114,26 @@ class ExportMenu(object):
         self.label.setText("")
         self.label.setObjectName("label")
         self.lblSubsribe = QtWidgets.QLabel(self.widget)
-        self.lblSubsribe.setGeometry(QtCore.QRect(110, 80, 691, 31))
+        self.lblSubsribe.setGeometry(QtCore.QRect(110, 60, 691, 31))
         self.lblSubsribe.setStyleSheet("font-size:14px;\n"
                                        "font-weight:250;")
         self.lblSubsribe.setObjectName("lblSubsribe")
+
+        # For AddSubribe Text
+        self.lblPanjang = QtWidgets.QTextBrowser(self.widget)
+        self.lblPanjang.setOpenExternalLinks(True)
+        self.lblPanjang.setGeometry(QtCore.QRect(110, 90, 691, 51))
+        self.lblPanjang.setStyleSheet(
+            "font-size:14px;\nfont-weight:250;border:none;background-color: rgb(204, 242, 244);margin:0;")
+        self.lblPanjang.setObjectName("lblPanjang")
+        self.lblPanjang.append(
+            "<p>Silakan klik disini (<a href=https://cv-globalsolusindo.com style=text-decoration:none>cv-globalsolusindo.com</a>) untuk harga perpanjangan masa berlangganan atau <br>WA (<a href=https://wa.me/6281312212015 style=text-decoration:none>0813 1221 2015</a>). Klik <a href="+sublinks+" style=text-decoration:none>disini</a> untuk beli perpanjangan akun baru</p>")
+
         self.btnBack = QtWidgets.QPushButton(self.widget)
         self.btnBack.setGeometry(QtCore.QRect(10, 130, 121, 31))
         self.btnBack.setObjectName("btnBack")
         self.lblNama = QtWidgets.QLabel(self.widget)
-        self.lblNama.setGeometry(QtCore.QRect(110, 25, 691, 31))
+        self.lblNama.setGeometry(QtCore.QRect(110, 15, 691, 50))
         self.lblNama.setStyleSheet("font-size:14px;\n"
                                    "font-weight:350;")
         self.lblNama.setObjectName("lblNama")
@@ -1168,7 +1259,7 @@ class ExportMenu(object):
 
         self.btnExport.setObjectName("btnExport")
         self.label_12 = QtWidgets.QLabel(self.widget)
-        self.label_12.setGeometry(QtCore.QRect(440, 130, 111, 31))
+        self.label_12.setGeometry(QtCore.QRect(440, 135, 111, 31))
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
@@ -1176,7 +1267,7 @@ class ExportMenu(object):
         self.label_12.setFont(font)
         self.label_12.setObjectName("label_12")
         self.txtNamaFile = QtWidgets.QLineEdit(self.widget)
-        self.txtNamaFile.setGeometry(QtCore.QRect(550, 130, 181, 31))
+        self.txtNamaFile.setGeometry(QtCore.QRect(550, 135, 181, 31))
         self.txtNamaFile.setObjectName("txtNamaFile")
         ExportMenu.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(ExportMenu)
@@ -1254,7 +1345,10 @@ class ExportMenu(object):
 
     def getName(self):
         activHelp = activateHelper()
-        return activHelp.getName()
+        text = "Nama   : "+activHelp.openconfig("name")+" ("+activHelp.openconfig("email") + \
+            " / "+activHelp.openconfig("no_telp") + \
+            ")\nAlamat : "+activHelp.openconfig("alamat")
+        return text
 
     def exportAction(self):
         dblite = databaseLite()
@@ -1320,6 +1414,9 @@ if __name__ == '__main__':
     LazadaView = LazadaMenu()
     ViewView = ViewMenu()
     ExportView = ExportMenu()
+
+    # sublinks = str("http://localhost/marketplace/subscribtion.php")
+    sublinks = str("https://marketing.pt-ckit.com/subscribtion.php")
 
     # INITIAL FIRST SHOW
     LoginView.setupUi(Main_Window)

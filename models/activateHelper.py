@@ -7,21 +7,16 @@ class activateHelper:
 
     email = ''
     hostlink = "https://marketing.pt-ckit.com/api/get_activate.php"
+    # hostlink = "http://localhost/marketplace/api/get_activate.php"
 
     def __init__(self):
-        self.email = self.getEmail()
+        self.email = self.openconfig("email")
 
-    def getEmail(self):
+    def openconfig(self, val):
         config = yaml.load(open(str(Path().absolute())+'/config/config.yaml', 'r'),
                            Loader=yaml.FullLoader)
 
-        return config['email']
-
-    def getName(self):
-        config = yaml.load(open(str(Path().absolute())+'/config/config.yaml', 'r'),
-                           Loader=yaml.FullLoader)
-
-        return config['name']
+        return config[val]
 
     def getActivate(self):
         datas = {'email': self.email}
