@@ -158,11 +158,13 @@ class LoginPage(object):
         self.linkNew.setText(_translate("LoginPage", "Beli Akun Baru"))
 
     def openLink(self):
-        QtGui.QDesktopServices.openUrl(QtCore.QUrl(
-            "https://marketing.pt-ckit.com/register.php"))
+        # QtGui.QDesktopServices.openUrl(QtCore.QUrl(
+        #     "https://marketing.pt-ckit.com/register.php"))
         # QtGui.QDesktopServices.openUrl(QtCore.QUrl(
         #     "http:localhost/marketplace/register.php"))
-        return
+        Main_Window.close()
+        RegisterView.setupUi(Main_Window)
+        Main_Window.show()
 
     def loginAction(self):
         emails = self.txtEmail.text()
@@ -192,14 +194,12 @@ class LoginPage(object):
                     Main_Window.show()
 
                 else:
-                    lin = QtWidgets.QMessageBox(self.centralwidget)
-                    lin.setText('Email/Password Incorrect')
-                    lin.exec()
+                    QtWidgets.QMessageBox.warning(
+                        self.centralwidget, "SIMAKET", "Email/Password Incorrect/User Not Active")
 
             except requests.ConnectionError as error:
-                lines = QtWidgets.QMessageBox(self.MainWindow)
-                lines.setText(error)
-                lines.exec()
+                QtWidgets.QMessageBox.critical(
+                    self.centralwidget, "SIMAKET", error)
 
 
 # INDEX SECTION
@@ -253,7 +253,7 @@ class indexMenu(object):
             "font-size:14px;\nfont-weight:250;border:none;background-color: rgb(204, 242, 244);margin:0;")
         self.lblPanjang.setObjectName("lblPanjang")
         self.lblPanjang.append(
-            "<p>Silakan klik disini (<a href=https://cv-globalsolusindo.com style=text-decoration:none>cv-globalsolusindo.com</a>) untuk harga perpanjangan masa berlangganan atau <br>WA (<a href=https://wa.me/6281312212015 style=text-decoration:none>0813 1221 2015</a>). Klik <a href="+sublinks+" style=text-decoration:none>disini</a> untuk beli perpanjangan akun baru</p>")
+            "<p>Silakan klik disini (<a href=https://cv-globalsolusindo.com style=text-decoration:none>cv-globalsolusindo.com</a>) untuk harga perpanjangan masa berlangganan atau <br>WA (<a href=https://wa.me/6281312212015 style=text-decoration:none>0813 1221 2015</a>). Klik <a href="+sublinks+" style=text-decoration:none>disini</a> untuk beli perpanjangan akun lama</p>")
 
         self.btnShopee = QtWidgets.QPushButton(self.widget)
         self.btnShopee.setGeometry(QtCore.QRect(50, 200, 120, 120))
@@ -302,6 +302,9 @@ class indexMenu(object):
         self.btnLogout = QtWidgets.QPushButton(self.widget)
         self.btnLogout.setGeometry(QtCore.QRect(660, 520, 131, 51))
         self.btnLogout.setObjectName("btnLogout")
+        self.btnSubscribe = QtWidgets.QPushButton(self.widget)
+        self.btnSubscribe.setGeometry(QtCore.QRect(10, 520, 175, 51))
+        self.btnSubscribe.setObjectName("btnLogout")
         indexMenu.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(indexMenu)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 21))
@@ -341,6 +344,16 @@ class indexMenu(object):
                                      "margin-left:5px;\n"
                                      "border-radius:10px;")
 
+        self.btnSubscribe.setIcon(QtGui.QIcon('assets/sale-tag.png'))
+        self.btnSubscribe.setIconSize(QtCore.QSize(48, 48))
+        self.btnSubscribe.setStyleSheet("font-size:18px;\n"
+                                        "background-color: rgb(210, 203, 99);\n"
+                                        "border:none;\n"
+                                        "color:black;\n"
+                                        "font-weight:bold;\n"
+                                        "margin-left:5px;\n"
+                                        "border-radius:10px;")
+
         self.setHeader()
 
         # Button Handle Action
@@ -349,6 +362,7 @@ class indexMenu(object):
         self.btnShopee.clicked.connect(self.toShopee)
         self.btnTampil.clicked.connect(self.toTampil)
         self.btnLogout.clicked.connect(self.LogoutAction)
+        self.btnSubscribe.clicked.connect(self.toSubscribe)
 
     def retranslateUi(self, indexMenu):
         _translate = QtCore.QCoreApplication.translate
@@ -362,6 +376,7 @@ class indexMenu(object):
         self.label_5.setText(_translate("indexMenu", "Tampil Data"))
         self.label_6.setText(_translate("indexMenu", "Export Excel"))
         self.btnLogout.setText(_translate("indexMenu", "Logout"))
+        self.btnSubscribe.setText(_translate("indexMenu", "Subscription"))
 
     def setHeader(self):
         self.label_2.setPixmap(QtGui.QPixmap("assets/standalone.png"))
@@ -379,7 +394,7 @@ class indexMenu(object):
     def hasErrorActivate(self, text):
         lin = QtWidgets.QMessageBox.warning(
             self.centralwidget, "SIMAKET", text)
-        self.LogoutAction()
+        self.toSubscribe()
 
     def getName(self):
         activHelp = activateHelper()
@@ -406,6 +421,11 @@ class indexMenu(object):
     def toExport(self):
         Main_Window.close()
         ExportView.setupUi(Main_Window)
+        Main_Window.show()
+
+    def toSubscribe(self):
+        Main_Window.close()
+        SubscribeView.setupUi(Main_Window)
         Main_Window.show()
 
     def LogoutAction(self):
@@ -458,7 +478,7 @@ class ShopeeMenu(object):
             "font-size:14px;\nfont-weight:250;border:none;background-color: rgb(204, 242, 244);margin:0;")
         self.lblPanjang.setObjectName("lblPanjang")
         self.lblPanjang.append(
-            "<p>Silakan klik disini (<a href=https://cv-globalsolusindo.com style=text-decoration:none>cv-globalsolusindo.com</a>) untuk harga perpanjangan masa berlangganan atau <br>WA (<a href=https://wa.me/6281312212015 style=text-decoration:none>0813 1221 2015</a>). Klik <a href="+sublinks+" style=text-decoration:none>disini</a> untuk beli perpanjangan akun baru</p>")
+            "<p>Silakan klik disini (<a href=https://cv-globalsolusindo.com style=text-decoration:none>cv-globalsolusindo.com</a>) untuk harga perpanjangan masa berlangganan atau <br>WA (<a href=https://wa.me/6281312212015 style=text-decoration:none>0813 1221 2015</a>). Klik <a href="+sublinks+" style=text-decoration:none>disini</a> untuk beli perpanjangan akun lama</p>")
 
         self.label_2 = QtWidgets.QLabel(self.widget)
         self.label_2.setGeometry(QtCore.QRect(10, 20, 91, 91))
@@ -642,11 +662,8 @@ class ShopeeMenu(object):
         Main_Window.show()
 
     def LogoutAction(self):
-        retcode = {'email': 'ERROR', 'name': 'ERROR', 'status': 'ERROR'}
-        with open(str(Path().absolute())+'/config/config.yaml', 'w') as f:
-            yaml.dump(retcode, f)
         Main_Window.close()
-        LoginView.setupUi(Main_Window)
+        SubscribeView.setupUi(Main_Window)
         Main_Window.show()
 
 # LAZADA SECTION
@@ -689,7 +706,7 @@ class LazadaMenu(object):
             "font-size:14px;\nfont-weight:250;border:none;background-color: rgb(204, 242, 244);margin:0;")
         self.lblPanjang.setObjectName("lblPanjang")
         self.lblPanjang.append(
-            "<p>Silakan klik disini (<a href=https://cv-globalsolusindo.com style=text-decoration:none>cv-globalsolusindo.com</a>) untuk harga perpanjangan masa berlangganan atau <br>WA (<a href=https://wa.me/6281312212015 style=text-decoration:none>0813 1221 2015</a>). Klik <a href="+sublinks+" style=text-decoration:none>disini</a> untuk beli perpanjangan akun baru</p>")
+            "<p>Silakan klik disini (<a href=https://cv-globalsolusindo.com style=text-decoration:none>cv-globalsolusindo.com</a>) untuk harga perpanjangan masa berlangganan atau <br>WA (<a href=https://wa.me/6281312212015 style=text-decoration:none>0813 1221 2015</a>). Klik <a href="+sublinks+" style=text-decoration:none>disini</a> untuk beli perpanjangan akun lama</p>")
 
         self.label_2 = QtWidgets.QLabel(self.widget)
         self.label_2.setGeometry(QtCore.QRect(10, 20, 91, 91))
@@ -876,12 +893,10 @@ class LazadaMenu(object):
         Main_Window.show()
 
     def LogoutAction(self):
-        retcode = {'email': 'ERROR', 'name': 'ERROR', 'status': 'ERROR'}
-        with open(str(Path().absolute())+'/config/config.yaml', 'w') as f:
-            yaml.dump(retcode, f)
         Main_Window.close()
-        LoginView.setupUi(Main_Window)
+        SubscribeView.setupUi(Main_Window)
         Main_Window.show()
+
 
 # VIEW SECTION
 
@@ -937,7 +952,7 @@ class ViewMenu(object):
             "font-size:14px;\nfont-weight:250;border:none;background-color: rgb(204, 242, 244);margin:0;")
         self.lblPanjang.setObjectName("lblPanjang")
         self.lblPanjang.append(
-            "<p>Silakan klik disini (<a href=https://cv-globalsolusindo.com style=text-decoration:none>cv-globalsolusindo.com</a>) untuk harga perpanjangan masa berlangganan atau <br>WA (<a href=https://wa.me/6281312212015 style=text-decoration:none>0813 1221 2015</a>). Klik <a href="+sublinks+" style=text-decoration:none>disini</a> untuk beli perpanjangan akun baru</p>")
+            "<p>Silakan klik disini (<a href=https://cv-globalsolusindo.com style=text-decoration:none>cv-globalsolusindo.com</a>) untuk harga perpanjangan masa berlangganan atau <br>WA (<a href=https://wa.me/6281312212015 style=text-decoration:none>0813 1221 2015</a>). Klik <a href="+sublinks+" style=text-decoration:none>disini</a> untuk beli perpanjangan akun lama</p>")
 
         self.btnBack = QtWidgets.QPushButton(self.widget)
         self.btnBack.setGeometry(QtCore.QRect(10, 120, 121, 31))
@@ -1083,12 +1098,10 @@ class ViewMenu(object):
         Main_Window.show()
 
     def LogoutAction(self):
-        retcode = {'email': 'ERROR', 'name': 'ERROR', 'status': 'ERROR'}
-        with open(str(Path().absolute())+'/config/config.yaml', 'w') as f:
-            yaml.dump(retcode, f)
         Main_Window.close()
-        LoginView.setupUi(Main_Window)
+        SubscribeView.setupUi(Main_Window)
         Main_Window.show()
+
 
 # EXPORT ACTION
 
@@ -1127,7 +1140,7 @@ class ExportMenu(object):
             "font-size:14px;\nfont-weight:250;border:none;background-color: rgb(204, 242, 244);margin:0;")
         self.lblPanjang.setObjectName("lblPanjang")
         self.lblPanjang.append(
-            "<p>Silakan klik disini (<a href=https://cv-globalsolusindo.com style=text-decoration:none>cv-globalsolusindo.com</a>) untuk harga perpanjangan masa berlangganan atau <br>WA (<a href=https://wa.me/6281312212015 style=text-decoration:none>0813 1221 2015</a>). Klik <a href="+sublinks+" style=text-decoration:none>disini</a> untuk beli perpanjangan akun baru</p>")
+            "<p>Silakan klik disini (<a href=https://cv-globalsolusindo.com style=text-decoration:none>cv-globalsolusindo.com</a>) untuk harga perpanjangan masa berlangganan atau <br>WA (<a href=https://wa.me/6281312212015 style=text-decoration:none>0813 1221 2015</a>). Klik <a href="+sublinks+" style=text-decoration:none>disini</a> untuk beli perpanjangan akun lama</p>")
 
         self.btnBack = QtWidgets.QPushButton(self.widget)
         self.btnBack.setGeometry(QtCore.QRect(10, 130, 121, 31))
@@ -1393,12 +1406,443 @@ class ExportMenu(object):
         Main_Window.show()
 
     def LogoutAction(self):
-        retcode = {'email': 'ERROR', 'name': 'ERROR', 'status': 'ERROR'}
-        with open(str(Path().absolute())+'/config/config.yaml', 'w') as f:
-            yaml.dump(retcode, f)
+        Main_Window.close()
+        SubscribeView.setupUi(Main_Window)
+        Main_Window.show()
+
+
+class SubscribeMenu(object):
+    def setupUi(self, SubscribeMenu):
+        SubscribeMenu.setObjectName("SubscribeMenu")
+        SubscribeMenu.resize(800, 600)
+        SubscribeMenu.setMinimumSize(QtCore.QSize(800, 600))
+        SubscribeMenu.setMaximumSize(QtCore.QSize(800, 600))
+        SubscribeMenu.setWindowIcon(
+            QtGui.QIcon("assets/standalone.png"))
+        self.centralwidget = QtWidgets.QWidget(SubscribeMenu)
+        self.centralwidget.setObjectName("centralwidget")
+        self.label = QtWidgets.QLabel(self.centralwidget)
+        self.label.setGeometry(QtCore.QRect(0, 0, 800, 600))
+        self.label.setMaximumSize(QtCore.QSize(800, 600))
+        self.label.setStyleSheet("background-color: rgb(204, 242, 244);")
+        self.label.setText("")
+        self.label.setObjectName("label")
+        self.label_3 = QtWidgets.QLabel(self.centralwidget)
+        self.label_3.setGeometry(QtCore.QRect(320, 40, 301, 51))
+        font = QtGui.QFont()
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_3.setFont(font)
+        self.label_3.setObjectName("label_3")
+        self.label_2 = QtWidgets.QLabel(self.centralwidget)
+        self.label_2.setGeometry(QtCore.QRect(210, 30, 101, 81))
+        self.label_2.setText("")
+        self.label_2.setPixmap(QtGui.QPixmap("assets/standalone.png"))
+        self.label_2.setScaledContents(True)
+        self.label_2.setObjectName("label_2")
+        self.label_9 = QtWidgets.QLabel(self.centralwidget)
+        self.label_9.setGeometry(QtCore.QRect(60, 360, 111, 16))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_9.setFont(font)
+        self.label_9.setObjectName("label_9")
+        self.label_10 = QtWidgets.QLabel(self.centralwidget)
+        self.label_10.setGeometry(QtCore.QRect(60, 290, 101, 16))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_10.setFont(font)
+        self.label_10.setObjectName("label_10")
+        self.btnLogin = QtWidgets.QPushButton(self.centralwidget)
+        self.btnLogin.setGeometry(QtCore.QRect(20, 480, 135, 50))
+        self.btnLogin.setObjectName("btnLogin")
+        self.txtEmail = QtWidgets.QLineEdit(self.centralwidget)
+        self.txtEmail.setGeometry(QtCore.QRect(60, 160, 671, 31))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.txtEmail.setFont(font)
+        self.txtEmail.setObjectName("txtEmail")
+        self.label_8 = QtWidgets.QLabel(self.centralwidget)
+        self.label_8.setGeometry(QtCore.QRect(60, 206, 81, 20))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_8.setFont(font)
+        self.label_8.setObjectName("label_8")
+        self.txtPassword = QtWidgets.QLineEdit(self.centralwidget)
+        self.txtPassword.setGeometry(QtCore.QRect(60, 240, 671, 31))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.txtPassword.setFont(font)
+        self.txtPassword.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.txtPassword.setObjectName("txtPassword")
+        self.label_7 = QtWidgets.QLabel(self.centralwidget)
+        self.label_7.setGeometry(QtCore.QRect(60, 130, 51, 16))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_7.setFont(font)
+        self.label_7.setObjectName("label_7")
+        self.txtActiveUntil = QtWidgets.QDateEdit(self.centralwidget)
+        self.txtActiveUntil.setGeometry(QtCore.QRect(60, 390, 671, 22))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.txtActiveUntil.setFont(font)
+        self.txtActiveUntil.setObjectName("txtActiveUntil")
+        self.btnSubmit = QtWidgets.QPushButton(self.centralwidget)
+        self.btnSubmit.setGeometry(QtCore.QRect(610, 480, 135, 50))
+        self.btnSubmit.setObjectName("btnSubmit")
+        self.txtActiveFrom = QtWidgets.QDateEdit(self.centralwidget)
+        self.txtActiveFrom.setGeometry(QtCore.QRect(60, 320, 671, 22))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.txtActiveFrom.setFont(font)
+        self.txtActiveFrom.setObjectName("txtActiveFrom")
+        SubscribeMenu.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(SubscribeMenu)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 21))
+        self.menubar.setObjectName("menubar")
+        SubscribeMenu.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(SubscribeMenu)
+        self.statusbar.setObjectName("statusbar")
+        SubscribeMenu.setStatusBar(self.statusbar)
+
+        self.txtActiveFrom.setCalendarPopup(True)
+        self.txtActiveUntil.setCalendarPopup(True)
+
+        self.retranslateUi(SubscribeMenu)
+        QtCore.QMetaObject.connectSlotsByName(SubscribeMenu)
+
+        # SET ICON BUTTON
+        self.btnLogin.setIcon(QtGui.QIcon('assets/back.png'))
+        self.btnLogin.setIconSize(QtCore.QSize(48, 48))
+        self.btnLogin.setStyleSheet("font-size:14px;\n"
+                                    "background-color: rgb(210, 203, 99);\n"
+                                    "border:none;\n"
+                                    "color:black;\n"
+                                    "font-weight:bold;\n"
+                                    "margin-left:5px;\n"
+                                    "border-radius:10px;")
+
+        self.btnSubmit.setIcon(QtGui.QIcon('assets/register.png'))
+        self.btnSubmit.setIconSize(QtCore.QSize(48, 48))
+        self.btnSubmit.setStyleSheet("font-size:14px;\n"
+                                     "background-color: rgb(110, 203, 99);\n"
+                                     "border:none;\n"
+                                     "color:black;\n"
+                                     "font-weight:bold;\n"
+                                     "margin-left:5px;\n"
+                                     "border-radius:10px;")
+
+        # Button Action Handle
+        self.btnLogin.clicked.connect(self.backToLogin)
+        self.btnSubmit.clicked.connect(self.submitAction)
+
+    def retranslateUi(self, SubscribeMenu):
+        _translate = QtCore.QCoreApplication.translate
+        SubscribeMenu.setWindowTitle(_translate("SubscribeMenu", "SIMAKET"))
+        self.label_3.setText(_translate(
+            "SubscribeMenu", "SIMAKET Add Subscription Period"))
+        self.label_9.setText(_translate("SubscribeMenu", "Active Until"))
+        self.label_10.setText(_translate("SubscribeMenu", "Active From"))
+        self.btnLogin.setText(_translate("SubscribeMenu", "Back Menu"))
+        self.label_8.setText(_translate("SubscribeMenu", "Password"))
+        self.label_7.setText(_translate("SubscribeMenu", "Email"))
+        self.btnSubmit.setText(_translate("SubscribeMenu", "Submit"))
+
+    def backToLogin(self):
+        Main_Window.close()
+        IndexView.setupUi(Main_Window)
+        Main_Window.show()
+
+    def submitAction(self):
+        txtemail = self.txtEmail.text()
+        txtpassword = self.txtPassword.text()
+        from_date = self.txtActiveFrom.date()
+        until_date = self.txtActiveUntil.date()
+        active_from = str(from_date.year())+'-' + \
+            str(from_date.month())+'-'+str(from_date.day())
+        active_until = str(until_date.year())+'-' + \
+            str(until_date.month())+'-'+str(until_date.day())
+
+        if txtemail == '' or txtpassword == '' or active_from == '' or active_until == '':
+            QtWidgets.QMessageBox.warning(
+                self.centralwidget, "SIMAKET", "Complete the form")
+        else:
+            hostlink = "https://marketing.pt-ckit.com/api/subscribe_apps.php"
+            # hostlink = "http://localhost/marketplace/api/subscribe_apps.php"
+            datas = {'email': txtemail, 'password': txtpassword,
+                     'active_from': active_from, 'active_until': active_until}
+
+            try:
+                resp = requests.post(hostlink, data=datas, timeout=None)
+                retcode = resp.json()
+
+                if(retcode['status'] == 'OK'):
+                    QtWidgets.QMessageBox.information(
+                        self.centralwidget, "SIMAKET", retcode['msg'])
+
+                    Main_Window.close()
+
+                    IndexView.setupUi(Main_Window)
+                    Main_Window.show()
+
+                else:
+                    QtWidgets.QMessageBox.warning(
+                        self.centralwidget, "SIMAKET", retcode['msg'])
+
+            except requests.ConnectionError as error:
+                QtWidgets.QMessageBox.critical(
+                    self.centralwidget, "SIMAKET", error)
+
+
+class RegisterMenu(object):
+    def setupUi(self, RegisterMenu):
+        RegisterMenu.setObjectName("RegisterMenu")
+        RegisterMenu.resize(800, 600)
+        RegisterMenu.setMinimumSize(QtCore.QSize(800, 600))
+        RegisterMenu.setMaximumSize(QtCore.QSize(800, 600))
+        RegisterMenu.setWindowIcon(
+            QtGui.QIcon("assets/standalone.png"))
+        self.centralwidget = QtWidgets.QWidget(RegisterMenu)
+        self.centralwidget.setObjectName("centralwidget")
+        self.label = QtWidgets.QLabel(self.centralwidget)
+        self.label.setGeometry(QtCore.QRect(0, 0, 800, 600))
+        self.label.setMaximumSize(QtCore.QSize(800, 600))
+        self.label.setStyleSheet("background-color: rgb(204, 242, 244);")
+        self.label.setText("")
+        self.label.setObjectName("label")
+        self.label_2 = QtWidgets.QLabel(self.centralwidget)
+        self.label_2.setGeometry(QtCore.QRect(240, 10, 101, 81))
+        self.label_2.setText("")
+        self.label_2.setPixmap(QtGui.QPixmap("assets/standalone.png"))
+        self.label_2.setScaledContents(True)
+        self.label_2.setObjectName("label_2")
+        self.label_3 = QtWidgets.QLabel(self.centralwidget)
+        self.label_3.setGeometry(QtCore.QRect(350, 20, 221, 51))
+        font = QtGui.QFont()
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_3.setFont(font)
+        self.label_3.setObjectName("label_3")
+        self.label_4 = QtWidgets.QLabel(self.centralwidget)
+        self.label_4.setGeometry(QtCore.QRect(40, 110, 51, 16))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_4.setFont(font)
+        self.label_4.setObjectName("label_4")
+        self.txtNama = QtWidgets.QLineEdit(self.centralwidget)
+        self.txtNama.setGeometry(QtCore.QRect(40, 140, 311, 31))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.txtNama.setFont(font)
+        self.txtNama.setMaxLength(50)
+        self.txtNama.setObjectName("txtNama")
+        self.txtNoTelp = QtWidgets.QLineEdit(self.centralwidget)
+        self.txtNoTelp.setGeometry(QtCore.QRect(440, 140, 281, 31))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.txtNoTelp.setFont(font)
+        self.txtNoTelp.setInputMethodHints(QtCore.Qt.ImhDigitsOnly)
+        self.txtNoTelp.setObjectName("txtNoTelp")
+        self.label_5 = QtWidgets.QLabel(self.centralwidget)
+        self.label_5.setGeometry(QtCore.QRect(440, 110, 71, 16))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_5.setFont(font)
+        self.label_5.setObjectName("label_5")
+        self.txtAlamat = QtWidgets.QLineEdit(self.centralwidget)
+        self.txtAlamat.setGeometry(QtCore.QRect(40, 210, 681, 31))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.txtAlamat.setFont(font)
+        self.txtAlamat.setMaxLength(50)
+        self.txtAlamat.setObjectName("txtAlamat")
+        self.label_6 = QtWidgets.QLabel(self.centralwidget)
+        self.label_6.setGeometry(QtCore.QRect(40, 180, 71, 16))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_6.setFont(font)
+        self.label_6.setObjectName("label_6")
+        self.txtPassword = QtWidgets.QLineEdit(self.centralwidget)
+        self.txtPassword.setGeometry(QtCore.QRect(440, 290, 281, 31))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.txtPassword.setFont(font)
+        self.txtPassword.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.txtPassword.setObjectName("txtPassword")
+        self.txtEmail = QtWidgets.QLineEdit(self.centralwidget)
+        self.txtEmail.setGeometry(QtCore.QRect(40, 290, 311, 31))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.txtEmail.setFont(font)
+        self.txtEmail.setObjectName("txtEmail")
+        self.label_7 = QtWidgets.QLabel(self.centralwidget)
+        self.label_7.setGeometry(QtCore.QRect(40, 260, 51, 16))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_7.setFont(font)
+        self.label_7.setObjectName("label_7")
+        self.label_8 = QtWidgets.QLabel(self.centralwidget)
+        self.label_8.setGeometry(QtCore.QRect(440, 260, 81, 16))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_8.setFont(font)
+        self.label_8.setObjectName("label_8")
+        self.label_9 = QtWidgets.QLabel(self.centralwidget)
+        self.label_9.setGeometry(QtCore.QRect(440, 340, 111, 16))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_9.setFont(font)
+        self.label_9.setObjectName("label_9")
+        self.label_10 = QtWidgets.QLabel(self.centralwidget)
+        self.label_10.setGeometry(QtCore.QRect(40, 340, 101, 16))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_10.setFont(font)
+        self.label_10.setObjectName("label_10")
+        self.txtActiveFrom = QtWidgets.QDateEdit(self.centralwidget)
+        self.txtActiveFrom.setGeometry(QtCore.QRect(40, 370, 311, 22))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.txtActiveFrom.setFont(font)
+
+        self.txtActiveFrom.setObjectName("txtActiveFrom")
+        self.txtActiveUntil = QtWidgets.QDateEdit(self.centralwidget)
+        self.txtActiveUntil.setGeometry(QtCore.QRect(440, 370, 281, 22))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.txtActiveUntil.setFont(font)
+        self.txtActiveUntil.setObjectName("txtActiveUntil")
+        self.btnLogin = QtWidgets.QPushButton(self.centralwidget)
+        self.btnLogin.setGeometry(QtCore.QRect(40, 460, 135, 50))
+        self.btnLogin.setObjectName("btnLogin")
+        self.btnRegister = QtWidgets.QPushButton(self.centralwidget)
+        self.btnRegister.setGeometry(QtCore.QRect(590, 460, 135, 50))
+        self.btnRegister.setObjectName("btnRegister")
+        RegisterMenu.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(RegisterMenu)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 21))
+        self.menubar.setObjectName("menubar")
+        RegisterMenu.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(RegisterMenu)
+        self.statusbar.setObjectName("statusbar")
+        RegisterMenu.setStatusBar(self.statusbar)
+
+        self.txtActiveFrom.setCalendarPopup(True)
+        self.txtActiveUntil.setCalendarPopup(True)
+
+        self.retranslateUi(RegisterMenu)
+        QtCore.QMetaObject.connectSlotsByName(RegisterMenu)
+
+        # SET ICON BUTTON
+        self.btnLogin.setIcon(QtGui.QIcon('assets/back.png'))
+        self.btnLogin.setIconSize(QtCore.QSize(48, 48))
+        self.btnLogin.setStyleSheet("font-size:14px;\n"
+                                    "background-color: rgb(210, 203, 99);\n"
+                                    "border:none;\n"
+                                    "color:black;\n"
+                                    "font-weight:bold;\n"
+                                    "margin-left:5px;\n"
+                                    "border-radius:10px;")
+
+        self.btnRegister.setIcon(QtGui.QIcon('assets/register.png'))
+        self.btnRegister.setIconSize(QtCore.QSize(48, 48))
+        self.btnRegister.setStyleSheet("font-size:14px;\n"
+                                       "background-color: rgb(110, 203, 99);\n"
+                                       "border:none;\n"
+                                       "color:black;\n"
+                                       "font-weight:bold;\n"
+                                       "margin-left:5px;\n"
+                                       "border-radius:10px;")
+
+        # Button Action Handle
+        self.btnLogin.clicked.connect(self.backToLogin)
+        self.btnRegister.clicked.connect(self.submitAction)
+
+    def retranslateUi(self, RegisterMenu):
+        _translate = QtCore.QCoreApplication.translate
+        RegisterMenu.setWindowTitle(_translate("RegisterMenu", "SIMAKET"))
+        self.label_3.setText(_translate("RegisterMenu", "SIMAKET REGISTER"))
+        self.label_4.setText(_translate("RegisterMenu", "Nama"))
+        self.label_5.setText(_translate("RegisterMenu", "No Telp"))
+        self.label_6.setText(_translate("RegisterMenu", "Alamat"))
+        self.label_7.setText(_translate("RegisterMenu", "Email"))
+        self.label_8.setText(_translate("RegisterMenu", "Password"))
+        self.label_9.setText(_translate("RegisterMenu", "Active Until"))
+        self.label_10.setText(_translate("RegisterMenu", "Active From"))
+        self.btnLogin.setText(_translate("RegisterMenu", "Back Login"))
+        self.btnRegister.setText(_translate("RegisterMenu", "Register"))
+
+    def backToLogin(self):
         Main_Window.close()
         LoginView.setupUi(Main_Window)
         Main_Window.show()
+
+    def submitAction(self):
+        from_date = self.txtActiveFrom.date()
+        until_date = self.txtActiveUntil.date()
+        txtname = self.txtNama.text()
+        txttelp = self.txtNoTelp.text()
+        txtalamat = self.txtAlamat.text()
+        txtemail = self.txtEmail.text()
+        txtpassword = self.txtPassword.text()
+        active_from = str(from_date.year())+'-' + \
+            str(from_date.month())+'-'+str(from_date.day())
+        active_until = str(until_date.year())+'-' + \
+            str(until_date.month())+'-'+str(until_date.day())
+
+        if txtname == '' or txttelp == '' or txtalamat == '' or txtemail == '' or txtpassword == '' or active_from == '' or active_until == '':
+            QtWidgets.QMessageBox.warning(
+                self.centralwidget, "SIMAKET", "Complete the form")
+        else:
+            hostlink = "https://marketing.pt-ckit.com/api/register_apps.php"
+            # hostlink = "http://localhost/marketplace/api/register_apps.php"
+            datas = {'name': txtname, 'no_telp': txttelp, 'alamat': txtalamat,
+                     'email': txtemail, 'password': txtpassword,
+                     'active_from': active_from, 'active_until': active_until}
+
+            try:
+                resp = requests.post(hostlink, data=datas, timeout=None)
+                retcode = resp.json()
+
+                if(retcode['status'] == 'OK'):
+                    QtWidgets.QMessageBox.information(
+                        self.centralwidget, "SIMAKET", retcode['msg'])
+
+                    Main_Window.close()
+
+                    LoginView.setupUi(Main_Window)
+                    Main_Window.show()
+
+                else:
+                    QtWidgets.QMessageBox.warning(
+                        self.centralwidget, "SIMAKET", retcode['msg'])
+
+            except requests.ConnectionError as error:
+                QtWidgets.QMessageBox.critical(
+                    self.centralwidget, "SIMAKET", error)
 
 
 # MAIN CODE
@@ -1414,6 +1858,8 @@ if __name__ == '__main__':
     LazadaView = LazadaMenu()
     ViewView = ViewMenu()
     ExportView = ExportMenu()
+    SubscribeView = SubscribeMenu()
+    RegisterView = RegisterMenu()
 
     # sublinks = str("http://localhost/marketplace/subscribtion.php")
     sublinks = str("https://marketing.pt-ckit.com/subscribtion.php")
